@@ -150,6 +150,9 @@
             margin: auto;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
+            max-width: 90%; /* 設定最大寬度為90% */
+            margin: auto;   /* 使其居中 */
+            box-sizing: border-box; /* 包括內邊距和邊框 */
         }
 
         .info-box h1 {
@@ -213,6 +216,12 @@
 
         .close-btn:hover {
             color: #a86e00;
+        }
+
+        @media (max-width: 576px) { /* 當螢幕寬度小於或等於576px時 */
+            .left-aligned-image img {
+                display: none; /* 隱藏圖片 */
+            }
         }
     </style>
 </head>
