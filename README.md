@@ -5,7 +5,7 @@ https://t5input.github.io/index.html
 
 ## 感謝
 * 香港城市大學 六碼筆畫輸入法
-* 行政院數位發展部，CNS11643中文標準交換碼全字庫
+* 行政院數位發展部 CNS11643中文標準交換碼全字庫
 * Conway (@yawnoc)
 * Carbo Kuo (@BYVoid) OpenCC
 * RIME (@rime) Rime Input Method Engine · 中州韻輸入法引擎
