@@ -19472,6 +19472,7 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 聜	uiiuuujjkojuiu
 聝	uiiuuuuikuukoj
 聞	ikuuikuuuiiuuu
+聞	kuuiikuuuiiuuu（蘋果）
 聟	ouuojikuuiiuuu
 聠	uiiuuujouuoi
 聡	uiiuuuojkjjkjj
