@@ -10722,13 +10722,13 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 席	juouiiuiki
 帮	ouuokkiiki
 帯	uoiiujkiki
-帰	jk
 帱	ikiuuuoukj
 帲	ikiouuiouui
 帳	ikiuiuuukoj
 帴	ikiukojukoj
 帵	ikijjkokjkk
 帶	uoiiukjkiki
+帶	uiiuokjkiki（蘋果）
 帷	ikioijuuuiu
 常	ijojkikuiki
 帹	ikijujoukou
