@@ -12514,6 +12514,7 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 攮	uiuuikuijkikuikuuuiiuokoj
 支	uikj
 攰	uikjku
+攰	uikjko（蘋果）
 攱	jujouuikj
 攲	uojuikuiuikj
 攳	uikjkuuuiuikuuij

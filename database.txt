@@ -13176,3 +13176,4 @@ jse_preset_vocubjoury: trje  # 導入八股文字頻
 喺	ikuoiokkjioj
 啱	ikuikiuoiku
 攞	uiuikiiukkjjjjoijuuuiu
+攰	uikjko
