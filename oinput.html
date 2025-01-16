@@ -12,15 +12,16 @@
     <meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆畫碼, 筆劃查詢, 筆畫查詢, 筆劃字典, 筆畫字典, 免安裝, 筆劃輸入法查詢, 筆劃輸入法網頁, 網上筆劃輸入法">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+    crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-1KQPDXF72N');
-    </script> 
+    </script>
     <style>
-                body {
+        body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -50,81 +51,77 @@
         .narrow-column {
             width: 15%;
             height: 50%;
-            white-space: normal; 
+            white-space: normal;
         }
         .flex-group {
             display: flex;
-            gap: 10px;  /* Adds space between the input fields */
+            gap: 10px;
         }
         .flex-group input {
-            flex-grow: 1; /* Ensures the input fields grow equally */
+            flex-grow: 1;
         }
         .flex-group input#checkInput {
-            background-color: #faff00; /* Makes the background transparent */
-            border: none; /* Removes the border */
-            outline: none; /* Removes the outline */
-            color: #333333; /* Text color similar to usual form controls */
-            pointer-events: none; /* Prevents the user from clicking or focusing on it */
+            background-color: #faff00;
+            border: none;
+            outline: none;
+            color: #333333;
+            pointer-events: none;
         }
         .flex-group input#strokeInput {
-            background-color: transparent; /* Makes the background transparent */
-            border: none; /* Removes the border */
-            outline: none; /* Removes the outline */
-            color: #ffffff; /* Text color similar to usual form controls */
-            pointer-events: none; /* Prevents the user from clicking or focusing on it */
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            pointer-events: none;
         }
         .textarea {
-            height: 100px; /* Sets a fixed height for the textarea */
-            resize: none; /* Optional: Prevents resizing */
+            height: 100px;
+            resize: none;
         }
         .left-aligned-image {
             display: flex;
-            align-items: flex-start; /* Aligns the image to the top of the container */
+            align-items: flex-start;
         }
         .left-aligned-image img {
-            max-width: 30%; /* Controls the size of the image */
-            margin-right: 20px; /* Adds space between the image and the text */
+            max-width: 30%;
+            margin-right: 20px;
         }
-        /* Include the CSS for the buttons here */
         button {
             display: flex;
-            background-color: #4CAF50; /* Green background */
-            border: none;             /* Remove borders */
-            justify-content: center; /* Center horizontally */
-            align-items: center;     /* Center vertically */
-            color: white;             /* White text */
-            padding: 5px 15px;       /* Some padding */
-            text-align: center;       /* Center the text */
-            text-decoration: none;    /* Remove underline */
-            display: inline-block;    /* Get the elements to line up nicely */
-            font-size: 14px;          /* Increase font size */
-            margin: 4px 2px;          /* Add some margin */
-            cursor: pointer;          /* Add a pointer cursor on hover */
-            border-radius: 12px;      /* Rounded corners */
-            transition: background-color 0.3s ease; /* Smooth background color change on hover */
+            background-color: #4CAF50;
+            border: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #45a049;
         }
-        /* Center the button container */
         .button-container {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
-        /* Set the text color of the input field to white */
         #strokeInput {
             color: white;
         }
-
         .compact-table {
-        width: 100%;
-        border-collapse: collapse;
+            width: 100%;
+            border-collapse: collapse;
         }
         .compact-table th, .compact-table td {
             border: 1px solid black;
             padding: 3px;
-            font-size: 10px; /* Adjust the font size as needed */
+            font-size: 10px;
         }
         .compact-table th {
             background-color: #f2f2f2;
@@ -140,9 +137,8 @@
             text-decoration: none;
         }
         .rnav-link:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #45a049;
         }
-        
         .info-box {
             background-color: #fff4e1;
             border: 1px solid #d4b087;
@@ -152,23 +148,20 @@
             margin: auto;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
-            max-width: 90%; /* 設定最大寬度為90% */
-            margin: auto;   /* 使其居中 */
-            box-sizing: border-box; /* 包括內邊距和邊框 */
+            max-width: 90%;
+            margin: auto;
+            box-sizing: border-box;
         }
-
         .info-box h1 {
             font-size: 1.2em;
             color: #d26800;
         }
-
         .info-box p {
             font-size: 16px;
             line-height: 1.5;
             color: #603813;
             margin-bottom: 15px;
         }
-
         .keyboard {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -176,7 +169,6 @@
             text-align: center;
             margin: 10px 0;
         }
-
         .keyboard div {
             background-color: #fff;
             border: 1px solid #d4b087;
@@ -184,13 +176,10 @@
             font-size: 14px;
             border-radius: 5px;
         }
-
         .highlight {
             color: #d26800;
             font-weight: bold;
         }
-
-        /* Footer styling */
         .footer {
             padding: 10px;
             text-align: center;
@@ -199,17 +188,13 @@
             font-size: 12px;
             color: #a86e00;
         }
-
         .footer a {
             color: #d26800;
             text-decoration: none;
         }
-
         .footer a:hover {
             text-decoration: underline;
         }
-
-        /* 關閉按鈕 */
         .close-btn {
             position: absolute;
             top: 10px;
@@ -220,84 +205,64 @@
             cursor: pointer;
             color: #d26800;
         }
-
         .close-btn:hover {
             color: #a86e00;
         }
-
-        /* 暗色模式樣式 */
         body.dark-mode {
             background-color: #121212;
             color: #f0f6fc;
         }
-
         body.dark-mode .navbar {
             background-color: #1f1f1f;
         }
-
         body.dark-mode .footer {
             background-color: #1f1f1f;
             color: #f0f6fc;
         }
-
         body.dark-mode .table-hover tbody tr:hover {
             background-color: #333333;
         }
-
         body.dark-mode .table th,
         body.dark-mode .table td {
             color: #f0f6fc;
             background:#333333;
         }
-
         body.dark-mode .form-control {
             background-color: #333333;
             color: #f0f6fc;
             border-color: #555555;
         }
-
         body.dark-mode .form-control::placeholder {
             color: #f0f6fc;
         }
-
-        /* 新增的樣式 */
         body.dark-mode .compact-table {
             background-color: #333333;
         }
-
         body.dark-mode .compact-table th,
         body.dark-mode .compact-table td {
             background-color: #333333;
             color: #f0f6fc;
         }
-
         body.dark-mode #strokeInput {
             color: #121212;
-            
         }
-
         body.dark-mode .table-responsive {
             background-color: #333333;
         }
-
         body.dark-mode .table-responsive .table {
             background-color: #333333;
         }
-
         body.dark-mode .table-responsive .table th,
         body.dark-mode .table-responsive .table td {
             color: #f0f6fc;
         }
-
         body.dark-mode .keyboard {
             color: #333333;
         }
         body.dark-mode .keyboard div {
             color: #f0f6fc;
             background-color: #333333;
-        }         
-        
-        /* 按鈕樣式 */
+        }
         #darkModeToggle {
             background: none;
             border: 2px solid currentColor;
@@ -307,88 +272,61 @@
             color: #ffffff;
             transition: color 0.3s;
         }
-
-        /* 深色模式下的按鈕顏色 */
         body.dark-mode #darkModeToggle {
             color: #ffffff;
         }
-
-        /* SVG 圖示大小 */
         .swap-on,
         .swap-off {
             width: 24px;
             height: 24px;
             transition: display 0.3s;
         }
-
-        /* 懸停效果 */
         #darkModeToggle:hover {
             opacity: 0.8;
         }
-
         #comment_area {
             border: none;
             cursor: pointer;
             margin: 4px 2px;
         }
-
         #comment_area:focus {
             outline: none;
         }
-
-        /* 當處於黑色模式時，調整 footer 的文字和鏈接顏色 */
         body.dark-mode .footer {
-            background-color: #1f1f1f; /* 確保背景為深色 */
-            color: #f0f6fc; /* 將文字顏色設為白色 */
+            background-color: #1f1f1f;
+            color: #f0f6fc;
         }
-
         body.dark-mode .footer a,
         body.dark-mode .footer .text-muted {
             color: #f0f6fc;
         }
-
         body.dark-mode .footer a:hover {
-            color: #bbbbbb; /* 懸停時的鏈接顏色（淡灰色） */
+            color: #bbbbbb;
         }
-
-        /* 當處於黑色模式時，調整 info-box 的背景和文字顏色 */
         body.dark-mode .info-box {
-            background-color: #333333; /* 灰色背景 */
-            color: #f0f6fc; /* 白色文字 */
-            border-color: #555555; /* 調整邊框顏色（如果有） */
+            background-color: #333333;
+            color: #f0f6fc;
+            border-color: #555555;
         }
-
-        /* 調整 info-box 內部元素的顏色 */
         body.dark-mode .info-box h1 {
             color: #f0f6fc;
         }
-
         body.dark-mode .info-box p {
             color: #dddddd;
         }
-        
-        /* 黑色模式下的 footer 樣式 */
         body.dark-mode .footer {
-            background-color: #121212; /* 深色背景 */
-            color: #ffffff; /* 預設文字顏色為白色 */
+            background-color: #121212;
+            color: #ffffff;
         }
-
         body.dark-mode .footer a {
-            color: #ffffff; /* 將鏈接文字設為白色 */
+            color: #ffffff;
         }
-
         body.dark-mode .footer a:hover {
-            color: #bbbbbb; /* 懸停時的鏈接顏色 */
+            color: #bbbbbb;
         }
-
-        body.dark-mode .footer .text-muted {
-            color: #ffffff !important; /* 強制覆蓋 text-muted 類名的樣式 */
-        }
-
-
-        @media (max-width: 576px) { /* 當螢幕寬度小於或等於576px時 */
+        @media (max-width: 576px) {
             .left-aligned-image img {
-                display: none; /* 隱藏圖片 */
+                display: none;
             }
         }
     </style>
@@ -464,7 +402,7 @@
                             <th>標點符號</th>
                             <th>`</th>
                         </tr>
-                    </table>  
+                    </table>
                     <p>一般中文常用字約4000字，完整版輸入法收納20948字。</p>
                     <p>輸入筆畫碼對應英文/數字鍵盤來查詢對應的中文字：</p>
                 </div>
@@ -488,6 +426,7 @@
             </div>
         </div>
 
+        <!-- 右側面板開始 -->
         <div class="right-panel">
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -501,11 +440,37 @@
                     <tbody id="results"></tbody>
                 </table>
             </div>
+
+            <!-- 在這裡插入 Google AdSense 的廣告區塊 -->
+            <div style="margin-top: 20px;">
+                <ins class="adsbygoogle"
+                style="display:inline-block;width:250px;height:250px"
+                data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="9897598987"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <ins class="adsbygoogle"
+                style="display:inline-block;width:250px;height:250px"
+                data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="9897598987"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <ins class="adsbygoogle"
+                style="display:inline-block;width:250px;height:250px"
+                data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="9897598987"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </div>
+        <!-- 右側面板結束 -->
     </div>
-    
+
     <div style="margin: 25px 0;"></div>
-        
+
     <div class="info-box" id="infoBox">
         <button class="close-btn" onclick="closeInfoBox()">×</button>
         <h1>T5線上筆畫輸入法</h1>
@@ -527,7 +492,6 @@
                 infoBox.style.display = 'none';
             }
         });
-
         function closeInfoBox() {
             const infoBox = document.getElementById('infoBox');
             infoBox.style.display = 'none';
@@ -560,8 +524,20 @@
                 </li>
                 <li class="ms-3">
                     <a class="text-muted" href="https://github.com/t5input">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                             class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+                                     0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                     -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87
+                                     2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+                                     0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
+                                     0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+                                     1.36.09 2 .27 1.53-1.04 2.2-.82
+                                     2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+                                     1.28.82 2.15 0 3.07-1.87 3.75-3.65
+                                     3.95.29.25.54.73.54 1.48 0 1.07-.01
+                                     1.93-.01 2.2 0 .21.15.46.55.38A8.013
+                                     8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
                         <svg class="bi" width="24" height="24"><use xlink:href="#"></use></svg>
                     </a>
