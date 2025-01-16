@@ -376,9 +376,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <!-- 左側廣告欄位 -->
             <div class="col-md-3 d-none d-md-block" style="position: sticky; top: 0;">
-            
             </div>
 
             <!-- 中間主內容 -->
@@ -477,8 +475,17 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoBox = document.getElementById('infoBox');
+            if (localStorage.getItem('infoBoxHidden') === 'true') {
+                infoBox.style.display = 'none';
+            }
+        });
+
         function closeInfoBox() {
-            document.getElementById("infoBox").style.display = "none";
+            const infoBox = document.getElementById('infoBox');
+            infoBox.style.display = 'none';
+            localStorage.setItem('infoBoxHidden', 'true');
         }
     </script>
     <script src="dict.min.js"></script>
