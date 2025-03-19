@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 新增的描述性 meta 標籤 -->
 <meta name="description" content="筆畫輸入法介紹，利用中文字的基本筆劃如橫、豎、撇、點、折來輸入文字，特別適合不熟悉拼音或注音的用戶。"/>
-<meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆畫碼, 筆劃查詢, 筆畫查詢, 筆劃字典, 筆畫字典, 免安裝">
+<meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆畫碼, 筆劃查詢, 筆劃查詢, 筆劃字典, 筆畫字典, 免安裝">
 <!-- Google tag (gtag.js) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
 crossorigin="anonymous"></script>
@@ -143,7 +143,7 @@ crossorigin="anonymous"></script>
         
         <h2>輸入法鍵盤示意圖</h2>
         <img src="image/key.png" alt="輸入法英文鍵盤示意圖" style="width: 60%;">
-        <img src="image/num.png" alt="輸入法數字鍵盤示意圖" style="width: 20%;">
+        <img src="image/uiojkl_num.png" alt="輸入法數字鍵盤示意圖" style="width: 20%;">
         <p>上一頁： "-" </p>
         <p>下一頁：空白鍵 / "+" </p>
         <h2>模式切換說明</h2>
@@ -153,50 +153,149 @@ crossorigin="anonymous"></script>
         </ul>
 
         <h2>筆劃輸入法線上版英文鍵盤／右方數字鍵盤對應筆劃字碼：</h2>
-            <table>
-                <tr>
-                    <th>筆劃字碼</th>
-                    <th>英文鍵盤</th>
-                    <th>右方數字鍵盤</th>
-                    <th>說明</th>
-                </tr>
-                <tr>
-                    <th>橫（一）</th>
-                    <th>U</th>
-                    <th>7</th>
-                    <td>基本運筆方向：由左至右</td>
-                </tr>
-                <tr>
-                    <th>豎（丨）</th>
-                    <th>I</th>
-                    <th>8</th>
-                    <td>基本運筆方向：由上至下</td>
-                </tr>
-                <tr>
-                    <th>撇（丿）</th>
-                    <th>O</th>
-                    <th>9</th>
-                    <td>基本運筆方向：由上至左下</td>
-                </tr>
-                <tr>
-                    <th>點（丶）</th>
-                    <th>J</th>
-                    <th>4</th>
-                    <td>基本運筆方向：由左上至右下</td>
-                </tr>
-                <tr>
-                    <th>折（乛/乙）</th>
-                    <th>K</th>
-                    <th>5</th>
-                    <td>包含各種帶折的筆劃</td>
-                </tr>
-                <tr>
-                    <th>通配符（*）</th>
-                    <th>L</th>
-                    <th>6</th>
-                    <td>通配符的作用通常是用來幫助補足不確定的筆劃</td>
-                </tr>
-            </table>    
+        <div style="margin-bottom: 15px;">
+            <button id="modeToggleBtn" style="padding: 8px 15px; background-color: #FF9800; color: white; border: none; border-radius: 5px; cursor: pointer;">切換至JKLUIO模式</button>
+        </div>
+        
+        <!-- 合併後的表格 -->
+        <table id="strokeMappingTable">
+            <tr>
+                <th>筆劃字碼</th>
+                <th class="uiojkl-mode">UIOJKL模式</th>
+                <th class="jkluio-mode">JKLUIO模式</th>
+                <th class="uiojkl-mode">數字鍵盤<br>(UIOJKL)</th>
+                <th class="jkluio-mode">數字鍵盤<br>(JKLUIO)</th>
+                <th>說明</th>
+            </tr>
+            <tr>
+                <th>橫（一）</th>
+                <th class="uiojkl-mode">U</th>
+                <th class="jkluio-mode">J</th>
+                <th class="uiojkl-mode">7</th>
+                <th class="jkluio-mode">4</th>
+                <td>基本運筆方向：由左至右</td>
+            </tr>
+            <tr>
+                <th>豎（丨）</th>
+                <th class="uiojkl-mode">I</th>
+                <th class="jkluio-mode">K</th>
+                <th class="uiojkl-mode">8</th>
+                <th class="jkluio-mode">5</th>
+                <td>基本運筆方向：由上至下</td>
+            </tr>
+            <tr>
+                <th>撇（丿）</th>
+                <th class="uiojkl-mode">O</th>
+                <th class="jkluio-mode">L</th>
+                <th class="uiojkl-mode">9</th>
+                <th class="jkluio-mode">6</th>
+                <td>基本運筆方向：由上至左下</td>
+            </tr>
+            <tr>
+                <th>點（丶）</th>
+                <th class="uiojkl-mode">J</th>
+                <th class="jkluio-mode">U</th>
+                <th class="uiojkl-mode">4</th>
+                <th class="jkluio-mode">7</th>
+                <td>基本運筆方向：由左上至右下</td>
+            </tr>
+            <tr>
+                <th>折（乛/乙）</th>
+                <th class="uiojkl-mode">K</th>
+                <th class="jkluio-mode">I</th>
+                <th class="uiojkl-mode">5</th>
+                <th class="jkluio-mode">8</th>
+                <td>包含各種帶折的筆劃</td>
+            </tr>
+            <tr>
+                <th>通配符（*）</th>
+                <th class="uiojkl-mode">L</th>
+                <th class="jkluio-mode">O</th>
+                <th class="uiojkl-mode">6</th>
+                <th class="jkluio-mode">9</th>
+                <td>通配符的作用通常是用來幫助補足不確定的筆劃</td>
+            </tr>
+        </table>
+
+        <style>
+            #strokeMappingTable th.uiojkl-mode,
+            #strokeMappingTable th.jkluio-mode {
+                padding: 8px 15px;
+            }
+            
+            /* 高亮當前模式樣式 */
+            #strokeMappingTable th.active-mode {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            #strokeMappingTable th.inactive-mode {
+                background-color: #f1f1f1;
+                color: #666;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modeToggleBtn = document.getElementById('modeToggleBtn');
+                const uiojklCells = document.querySelectorAll('.uiojkl-mode');
+                const jkluioCells = document.querySelectorAll('.jkluio-mode');
+                
+                // 讀取本地保存的輸入模式
+                const isUIOModeActive = localStorage.getItem('isUIOModeActive') === null ? 
+                    true : localStorage.getItem('isUIOModeActive') === 'true';
+                
+                // 初始化表格顯示
+                updateTableHighlight(isUIOModeActive);
+                
+                // 更新按鈕文字
+                updateButtonText(isUIOModeActive);
+                
+                modeToggleBtn.addEventListener('click', function() {
+                    // 切換模式
+                    const newMode = !isUIOModeCurrentlyActive();
+                    updateTableHighlight(newMode);
+                    updateButtonText(newMode);
+                    
+                    // 可選：將選擇同步到localStorage
+                    localStorage.setItem('isUIOModeActive', newMode);
+                });
+                
+                function isUIOModeCurrentlyActive() {
+                    return uiojklCells[0].classList.contains('active-mode');
+                }
+                
+                function updateTableHighlight(isUIOJKLMode) {
+                    // 更新UIOJKL模式列
+                    uiojklCells.forEach(cell => {
+                        if (isUIOJKLMode) {
+                            cell.classList.add('active-mode');
+                            cell.classList.remove('inactive-mode');
+                        } else {
+                            cell.classList.add('inactive-mode');
+                            cell.classList.remove('active-mode');
+                        }
+                    });
+                    
+                    // 更新JKLUIO模式列
+                    jkluioCells.forEach(cell => {
+                        if (!isUIOJKLMode) {
+                            cell.classList.add('active-mode');
+                            cell.classList.remove('inactive-mode');
+                        } else {
+                            cell.classList.add('inactive-mode');
+                            cell.classList.remove('active-mode');
+                        }
+                    });
+                }
+                
+                function updateButtonText(isUIOJKLMode) {
+                    modeToggleBtn.textContent = isUIOJKLMode ? 
+                        '切換至JKLUIO模式' : '切換至UIOJKL模式';
+                }
+            });
+        </script>
+
         <h2>字碼分類</h2>
         <p>此輸入法中的筆劃類似永字八法中的分類，包括橫、豎、撇、點和折。</p>
         
