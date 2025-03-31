@@ -31791,7 +31791,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 𡂾	ikuokuujouuojkjjoj
 𡂿	ikuuikuikuikukokoj
 𡃀	ikujujouokooojokkj
-𡃁	ikuuuiuokuuikuuuok
 𡃂	ikujjkoiukuuukjjjj
 𡃃	ikukkjjjjikuuiiuuu
 𡃄	ikuuiojojojikuuuoj
