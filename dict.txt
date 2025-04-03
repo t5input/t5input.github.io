@@ -12202,7 +12202,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 揵	uiukuuuuikj
 揶	uiuuiiuuuki
 揷	ukuuuioiukuu
-揸	ukuuiojikuuu
 揹	uiuiuuokikuu
 揺	ukuojjouuiki
 揻	ukuuoukoukjo
