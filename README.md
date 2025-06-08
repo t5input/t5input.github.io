@@ -1,6 +1,5 @@
 # 筆畫輸入法線上版
-* https://t5input.github.io
-* https://t5input.pages.dev
+https://t5input.github.io
 
 筆畫輸入法線上版，提供方便、免安裝的筆畫輸入法、字典和教學，讓您輕鬆使用並查詢筆畫輸入法。
 
@@ -10,5 +9,6 @@
 * Conway (@yawnoc) Stroke Input Method 
 * Carbo Kuo (@BYVoid) OpenCC
 * RIME (@rime) Rime Input Method Engine · 中州韻輸入法引擎
+* Ray (@ushelp) EasyQRCodeJS
 
 
