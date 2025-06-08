@@ -537,6 +537,12 @@
         body.dark-mode .qrcode-modal-content p {
             color: #f0f6fc; /* Ensure paragraph text in modal is visible */
         }
+        .qrcode-modal-overlay:not(.active) {
+            pointer-events: none;
+        }
+        .qrcode-modal-overlay .qrcode-modal-content {
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body>
