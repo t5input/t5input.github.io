@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="image/logo.png">
     <script src="Opencc.js"></script>
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="qrcode/easy.qrcode.min.js"></script>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="筆畫輸入法線上版，提供方便、免安裝的筆畫輸入法、字典和教學，讓您輕鬆使用並使用完整版筆畫輸入法。">
@@ -169,7 +170,7 @@
             font-size: 16px;
             line-height: 1.5;
             color: #603813;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .keyboard {
@@ -388,11 +389,153 @@
             color: #ffffff !important; /* 強制覆蓋 text-muted 類名的樣式 */
         }
 
-
         @media (max-width: 576px) { /* 當螢幕寬度小於或等於576px時 */
             .left-aligned-image img {
                 display: none; /* 隱藏圖片 */
             }
+        }
+        /* QR Code Modal specific styles */
+        .qrcode-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            display: flex; /* Use flex to center content */
+            justify-content: center;
+            align-items: center;
+            z-index: 1050; /* Bootstrap modal default z-index is 1050 */
+            visibility: hidden; /* Hidden by default, control with JS display property */
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .qrcode-modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .qrcode-modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90%;
+            width: 500px; /* Or a suitable max-width */
+            position: relative; /* For close button positioning */
+            z-index: 1051;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .qrcode-modal-content .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .qrcode-modal-content .close-btn:hover {
+            color: #000;
+        }
+
+        .qrcode-modal-content input[type="text"],
+        .qrcode-modal-content input[type="number"],
+        .qrcode-modal-content select,
+        .qrcode-modal-content textarea { /* 新增 textarea */
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 15px; /* 調整為與 input 統一 */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            color: #333; /* Default text color */
+        }
+        .qrcode-modal-content button.btn-primary { /* Target specific button for styling */
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px; /* 調整為與 input 統一 */
+        }
+        .qrcode-modal-content button.btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .qrcode-modal-content #modalQrcodeContainer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 200px;
+            min-height: 200px;
+        }
+        .qrcode-modal-content .alert {
+            padding: 8px 15px;
+            margin-bottom: 15px; /* 調整為與 input 統一 */
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .qrcode-modal-content .alert-warning {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: #664d03;
+        }
+        .qrcode-modal-content .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c2c7;
+            color: #842029;
+        }
+
+        /* Dark mode for modal */
+        body.dark-mode .qrcode-modal-content {
+            background-color: #333333;
+            color: #f0f6fc;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        body.dark-mode .qrcode-modal-content .close-btn {
+            color: #f0f6fc;
+        }
+        body.dark-mode .qrcode-modal-content .close-btn:hover {
+            color: #cccccc;
+        }
+        body.dark-mode .qrcode-modal-content input[type="text"],
+        body.dark-mode .qrcode-modal-content input[type="number"],
+        body.dark-mode .qrcode-modal-content select,
+        body.dark-mode .qrcode-modal-content textarea { /* 新增 textarea */
+            background-color: #444444;
+            color: #f0f6fc;
+            border-color: #666666;
+        }
+        body.dark-mode .qrcode-modal-content input::placeholder,
+        body.dark-mode .qrcode-modal-content textarea::placeholder { /* 新增 textarea placeholder */
+            color: #f0f6fc80; /* Lighter placeholder in dark mode */
+        }
+        body.dark-mode .qrcode-modal-content button.btn-primary {
+            background-color: #0056b3; /* Darker blue for dark mode button */
+        }
+        body.dark-mode .qrcode-modal-content button.btn-primary:hover {
+            background-color: #004080;
+        }
+        body.dark-mode .qrcode-modal-content .alert-warning {
+            background-color: #5a522e; /* Darker warning background */
+            border-color: #8a6d3b;
+            color: #f0f6fc;
+        }
+        body.dark-mode .qrcode-modal-content .alert-danger {
+            background-color: #6a3e42; /* Darker danger background */
+            border-color: #a74249;
+            color: #f0f6fc;
+        }
+        body.dark-mode .qrcode-modal-content p {
+            color: #f0f6fc; /* Ensure paragraph text in modal is visible */
         }
     </style>
 </head>
@@ -483,6 +626,11 @@
                         <path d="M12.545,12.151L12.545,12.151c0,1.054,0.855,1.909,1.909,1.909h3.536c-0.607,1.972-2.101,3.467-4.26,3.866 c-3.431,0.635-6.862-1.865-7.19-5.339c-0.34-3.595,2.479-6.62,6.005-6.62c1.002,0,1.946,0.246,2.777,0.679 c0.757,0.395,1.683,0.236,2.286-0.368l0,0c0.954-0.954,0.701-2.563-0.498-3.179c-1.678-0.862-3.631-1.264-5.692-1.038 c-4.583,0.502-8.31,4.226-8.812,8.809C1.945,16.9,6.649,22,12.545,22c6.368,0,8.972-4.515,9.499-8.398 c0.242-1.78-1.182-3.352-2.978-3.354l-4.61-0.006C13.401,10.24,12.545,11.095,12.545,12.151z" fill="#FFFFFF"></path>
                     </svg>
                 </button>
+                <button onclick="showQrModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8 2v-2h2v2h-2zm2 0v-2h2v2h-2zm-4-2v-2h2v2h-2zm4 4v-2h2v2h-2zm-4 0v-2h2v2h-2zm-2 0v-2h2v2h-2zm6 0v-2h2v2h-2z"/>
+                    </svg>
+                </button>
                 <button onclick="copyToClipboard()">複製到剪貼板</button>
                 <button onclick="convertTraditionalToSimplified()">繁轉簡</button>
                 <button id="prevBtn" onclick="previousPage()">上一頁</button>
@@ -555,6 +703,35 @@
         }
     </script>
 
+    <!-- QR Code Modal Structure -->
+    <div class="qrcode-modal-overlay" id="qrCodeModal">
+        <div class="qrcode-modal-content">
+            <button class="close-btn" onclick="closeQrModal()">×</button>
+            <h1 class="mb-4">QR Code 產生器</h1>
+            <p>可以快速把資料傳送到手機，複製貼上。</p>
+            <div class="mb-3">
+                <textarea id="modalQrText" class="form-control" rows="4" placeholder="請輸入要轉換成QR Code的文字或網址"></textarea>
+            </div>
+            <div id="modalWordCountWarning" class="alert alert-warning py-2 mb-3" style="display:none; font-size: 15px;"></div>
+            <div class="mb-3">
+                <label for="modalQrSize" class="form-label">QR Code 大小 (px):</label>
+                <input type="number" id="modalQrSize" class="form-control" value="350" min="50" style="max-width: 200px; display: inline-block;">
+            </div>
+            <div class="mb-3">
+                <label for="modalQrLevel" class="form-label">容錯等級：</label>
+                <select id="modalQrLevel" class="form-select" style="max-width: 200px; display: inline-block;">
+                    <option value="L">L - 低 (約7%容錯)</option>
+                    <option value="M">M - 中 (約15%容錯)</option>
+                    <option value="Q">Q - 高 (約25%容錯)</option>
+                    <option value="H">H - 超高 (約30%容錯)</option>
+                </select>
+            </div>
+            <button onclick="generateQRCodeModal()" class="btn btn-primary mb-3">產生 QR Code</button>
+            <div id="modalQrcodeContainer" class="d-flex justify-content-center align-items-center" style="min-width:200px; min-height:200px;"></div>
+            <div id="modalQrInfo" class="mt-2" style="font-size:15px; text-align:center;"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-1 my-1 py-2 border-top">
@@ -589,6 +766,94 @@
             </ul>
         </div>
     </footer>
+    <script>
+        // QR Code Modal functions
+        function showQrModal() {
+            const mainOutputText = document.getElementById('Output').value;
+            const modalQrText = document.getElementById('modalQrText');
+            const qrCodeModal = document.getElementById('qrCodeModal');
+            const modalQrcodeContainer = document.getElementById('modalQrcodeContainer');
+            const modalWordCountWarning = document.getElementById('modalWordCountWarning');
+            const modalQrInfo = document.getElementById('modalQrInfo');
+
+            modalQrText.value = mainOutputText; // Pre-fill with content from the main textarea
+
+            // Clear previous QR Code and messages
+            modalQrcodeContainer.innerHTML = '';
+            modalWordCountWarning.style.display = 'none';
+            modalWordCountWarning.textContent = '';
+            modalQrInfo.innerHTML = '';
+
+            qrCodeModal.classList.add('active'); // Show the modal with animation
+            generateQRCodeModal(); // Generate QR code immediately upon opening
+        }
+
+        function closeQrModal() {
+            const qrCodeModal = document.getElementById('qrCodeModal');
+            qrCodeModal.classList.remove('active'); // Hide the modal with animation
+            // Optionally, clear modal content after animation for performance
+            setTimeout(() => {
+                const modalQrcodeContainer = document.getElementById('modalQrcodeContainer');
+                modalQrcodeContainer.innerHTML = '';
+                document.getElementById('modalQrText').value = '';
+                document.getElementById('modalWordCountWarning').style.display = 'none';
+                document.getElementById('modalQrInfo').innerHTML = '';
+            }, 300); // Match CSS transition duration
+        }
+
+        function generateQRCodeModal() {
+            const text = document.getElementById('modalQrText').value;
+            const qrcodeContainer = document.getElementById('modalQrcodeContainer');
+            const warningMessage = document.getElementById('modalWordCountWarning');
+            let size = parseInt(document.getElementById('modalQrSize').value);
+            const level = document.getElementById('modalQrLevel').value;
+
+            // 清除警告訊息
+            warningMessage.style.display = 'none';
+            warningMessage.textContent = '';
+
+            // 清除 QR Code
+            qrcodeContainer.innerHTML = '';
+
+            if (text.trim() === '') {
+                qrcodeContainer.innerHTML = '<p style="color: grey;">請輸入內容以產生QR Code。</p>'; 
+                return;
+            }
+
+            // 字數警告
+            const maxChars = 500; // QR Code 建議的字數限制，超過可能影響掃描
+            if (text.length > maxChars) {
+                warningMessage.textContent = `警告：輸入內容已超過${maxChars}字（目前${text.length}字），過長的內容可能無法清晰掃描或顯示於QR Code中。`;
+                warningMessage.style.display = 'block';
+            }
+
+            // 驗證大小
+            if (isNaN(size) || size < 50) {
+                size = 350; // 設置預設值
+                document.getElementById('modalQrSize').value = 350;
+            }
+
+            // 產生 QR Code
+            try {
+                // EasyQRCodeJS 會自動處理清空並重新繪製 QR Code
+                new QRCode(qrcodeContainer, {
+                    text: text,
+                    width: size,
+                    height: size,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel[level] // 傳入正確的容錯等級枚舉
+                });
+                // 顯示當前大小與容錯等級
+                document.getElementById('modalQrInfo').innerHTML = `目前大小：<b>${size}px</b>　容錯等級：<b>${level}</b>`;
+            } catch (e) {
+                // 捕獲因內容過長或其他原因導致的生成失敗
+                qrcodeContainer.innerHTML = '<div class="alert alert-danger" style="font-size:15px;">內容過長，無法產生 QR Code！<br>請縮短內容或降低容錯等級。</div>';
+                document.getElementById('modalQrInfo').innerHTML = '';
+                console.error("QR Code 生成失敗:", e);
+            }
+        }
+    </script>
     <script src="oinputScript.min.js"></script>
 </body>
 </html>
