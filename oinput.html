@@ -537,32 +537,6 @@
         body.dark-mode .qrcode-modal-content p {
             color: #f0f6fc; /* Ensure paragraph text in modal is visible */
         }
-
-        /* Styles for the modal wrapper and side ads */
-        .modal-wrapper {
-            display: flex;
-            justify-content: center; /* 將內容和廣告水平居中 */
-            align-items: center;     /* 將內容和廣告垂直居中 */
-            width: 100%;
-            max-width: 1200px; /* 可選：限制模態框和廣告的總寬度 */
-        }
-
-        .modal-ad-container {
-            flex-shrink: 0;
-            flex-grow: 0;
-            padding: 10px;
-            text-align: center;
-            display: none; /* 預設隱藏廣告，在小螢幕上不顯示 */
-            width: 160px; /* 為廣告設定一個寬度，例如160px常見於側邊廣告 */
-            min-width: 160px; /* 確保有足夠空間 */
-        }
-
-        /* 在大螢幕上顯示側邊廣告 */
-        @media (min-width: 992px) { /* 設定一個斷點，例如992px（Bootstrap的lg斷點） */
-            .modal-ad-container {
-                display: block; /* 顯示廣告 */
-            }
-        }
     </style>
 </head>
 <body>
@@ -731,20 +705,21 @@
 
     <!-- QR Code Modal Structure -->
     <div class="qrcode-modal-overlay" id="qrCodeModal">
-        <div class="modal-wrapper">
-            <div class="modal-ad-container modal-ad-left">
-                <!-- Ad 1: 左側廣告 -->
+        <div class="qrcode-modal-content" style="display: flex; align-items: flex-start; justify-content: center;">
+            <!-- 左側廣告 -->
+            <div style="flex:0 0 120px; margin-right:10px;">
                 <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9611199768896429"
-                     data-ad-slot="5917016948"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                    style="display:block"
+                    data-ad-client="ca-pub-9611199768896429"
+                    data-ad-slot="5917016948"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
                 <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-            <div class="qrcode-modal-content">
+            <!-- 中間內容 -->
+            <div style="flex:1; min-width:0;">
                 <button class="close-btn" onclick="closeQrModal()">×</button>
                 <h1 class="mb-4">QR Code 產生器</h1>
                 <p>可以快速把資料傳送到手機，複製貼上。</p>
@@ -769,16 +744,16 @@
                 <div id="modalQrcodeContainer" class="d-flex justify-content-center align-items-center" style="min-width:200px; min-height:200px;"></div>
                 <div id="modalQrInfo" class="mt-2" style="font-size:15px; text-align:center;"></div>
             </div>
-            <div class="modal-ad-container modal-ad-right">
-                <!-- Ad 2: 右側廣告 -->
+            <!-- 右側廣告 -->
+            <div style="flex:0 0 120px; margin-left:10px;">
                 <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9611199768896429"
-                     data-ad-slot="5917016948"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                    style="display:block"
+                    data-ad-client="ca-pub-9611199768896429"
+                    data-ad-slot="5917016948"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
                 <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
         </div>
