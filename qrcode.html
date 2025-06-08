@@ -36,7 +36,6 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            gap: 32px;
         }
         .ad-block {
             width: 260px;
@@ -310,7 +309,7 @@
     <div class="main-flex-wrapper">
         <div class="ad-side">
             <div class="ad-block">
-                <!-- 左側廣告1 -->
+                <!-- 左側廣告 -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block;width:260px;height:300px;"
@@ -357,7 +356,7 @@
         </div>
         <div class="ad-side">
             <div class="ad-block">
-                <!-- 右側廣告1 -->
+                <!-- 右側廣告 -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block;width:260px;height:300px;"
@@ -432,6 +431,7 @@
     });
     document.addEventListener('DOMContentLoaded', function() {
         setDarkMode(getDarkModePref());
+        generateQRCodeModal();
     });
     // 取得網址參數並填入 textarea
     function getQueryParam(name) {
