@@ -731,12 +731,9 @@
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-9611199768896429"
-                 data-ad-slot="YOUR_LEFT_AD_SLOT_ID" <!-- 請替換為您的左側廣告單元 ID -->
+                 data-ad-slot="5917016948"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
 
         <div class="qrcode-modal-content">
@@ -771,12 +768,9 @@
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-9611199768896429"
-                 data-ad-slot="YOUR_RIGHT_AD_SLOT_ID" <!-- 請替換為您的右側廣告單元 ID -->
+                 data-ad-slot="5917016948"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
     </div>
 
@@ -832,8 +826,19 @@
             modalWordCountWarning.textContent = '';
             modalQrInfo.innerHTML = '';
 
-            qrCodeModal.classList.add('active'); // Show the modal with animation
-            generateQRCodeModal(); // Generate QR code immediately upon opening
+            qrCodeModal.classList.add('active'); // 顯示視窗，觸發 CSS 過渡效果
+            generateQRCodeModal(); // 立即生成 QR Code
+
+            // ***** NEW: 在視窗完全顯示後，觸發 AdSense 重新掃描並載入廣告 *****
+            // 設定一個短暫的延遲，確保 CSS 過渡效果完成，讓 AdSense 腳本能夠「看到」這些廣告單元
+            setTimeout(() => {
+                if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
+                    window.adsbygoogle.push({});
+                    console.log("AdSense: 已觸發新的廣告單元載入。"); // 可以在開發者工具的 Console 中看到
+                } else {
+                    console.warn("AdSense: 無法找到 'adsbygoogle' 物件或 'push' 函式。請確認 AdSense 腳本已載入。"); // 偵錯用
+                }
+            }, 350); // 這裡的 350ms 略大於 CSS 的 0.3s 過渡時間
         }
 
         function closeQrModal() {
