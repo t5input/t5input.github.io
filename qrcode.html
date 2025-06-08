@@ -27,6 +27,25 @@
             min-height: 90vh;
             width: 100%;
         }
+        .ad-side {
+            flex: 0 0 260px;
+            max-width: 320px;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 32px;
+        }
+        .ad-block {
+            width: 260px;
+            min-height: 300px;
+            max-width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .qrcode-two-col {
             display: flex;
             flex-direction: row;
@@ -217,6 +236,9 @@
             margin-right: 0;
         }
         @media (max-width: 900px) {
+            .ad-side {
+                display: none !important;
+            }
             .main-flex-wrapper {
                 padding: 0 2vw;
             }
@@ -286,6 +308,34 @@
         </div>
     </nav>
     <div class="main-flex-wrapper">
+        <div class="ad-side">
+            <div class="ad-block">
+                <!-- 左側廣告1 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block;width:260px;height:300px;"
+                     data-ad-client="ca-pub-9611199768896429"
+                     data-ad-slot="5917016948"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad-block">
+                <!-- 左側廣告2 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block;width:260px;height:300px;"
+                     data-ad-client="ca-pub-9611199768896429"
+                     data-ad-slot="5917016948"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
         <div class="qrcode-two-col">
             <div class="qrcode-input-col">
                 <div class="qrcode-content">
@@ -316,6 +366,34 @@
             <div class="qrcode-output-col">
                 <div id="modalQrcodeContainer" class="d-flex-center"></div>
                 <div id="modalQrInfo" class="mt-2"></div>
+            </div>
+        </div>
+        <div class="ad-side">
+            <div class="ad-block">
+                <!-- 右側廣告1 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block;width:260px;height:300px;"
+                     data-ad-client="ca-pub-9611199768896429"
+                     data-ad-slot="5917016948"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad-block">
+                <!-- 右側廣告2 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block;width:260px;height:300px;"
+                     data-ad-client="ca-pub-9611199768896429"
+                     data-ad-slot="5917016948"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>
