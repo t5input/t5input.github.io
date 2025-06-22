@@ -81,23 +81,29 @@
             color: #d32f2f;
         }
     </style>
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 </head>
 <body>
     <div class="container">
-        <amp-ad width="100vw" height="320"
-             type="adsense"
+        <h1>觀看廣告以繼續使用筆畫輸入法</h1>
+        <p>請點擊下方按鈕觀看廣告。廣告播放完畢後，您將獲得一個 Token，用於延長您的筆畫輸入法擴充功能的使用期限。</p>
+        
+        <!-- Google AdSense 廣告代碼 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+             crossorigin="anonymous"></script>
+        <!-- extenion -->
+        <ins class="adsbygoogle"
+             style="display:block"
              data-ad-client="ca-pub-9611199768896429"
              data-ad-slot="9897598987"
-             data-auto-format="rspv"
-             data-full-width="">
-          <div overflow=""></div>
-        </amp-ad>
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <!-- Google AdSense 廣告代碼結束 -->
 
-        <h1>觀看廣告以繼續使用筆畫輸入法</h1>
-        <p>為延長您的筆畫輸入法擴充功能的使用期限，請稍候片刻，Token 將在廣告載入後自動提供。</p>
-        
-        <div id="adStatus">廣告載入中，請稍候...</div>
+        <button id="watchAdBtn">觀看廣告 (約 5 秒)</button>
+        <div id="adStatus"></div>
 
         <div id="tokenDisplay">
             <p>您的 Token 碼：</p>
