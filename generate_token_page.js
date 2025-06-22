@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const adStatus = document.getElementById('adStatus');
     const tokenDisplay = document.getElementById('tokenDisplay');
     const tokenOutput = document.getElementById('tokenOutput');
-    const copyTokenBtn = document.getElementById('copyTokenBtn');
+
+    // 新增：檢查所有必要的 DOM 元素是否存在
+    if (!watchAdBtn || !adStatus || !tokenDisplay || !tokenOutput) {
+        console.error('錯誤：缺少一個或多個必要的 DOM 元素，請檢查 generate_token_page.html。');
+        return; // 停止執行以避免 TypeError
+    }
 
     // 新增：深色模式切換邏輯
     const darkModeToggle = document.getElementById('darkModeToggle');
@@ -102,29 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tokenOutput.setSelectionRange(0, 99999); // For mobile devices
                 
                 // 提示用戶複製
-                adStatus.textContent = '請複製您的 Token 碼並貼到擴充功能中。 ';                
+                adStatus.textContent = '請複製您的 Token 碼並貼到擴充功能中。 ';
                 watchAdBtn.textContent = '複製 Token'; // 改變按鈕文字為複製 Token
                 watchAdBtn.disabled = false; // 重新啟用按鈕
 
             }, 5000); // 5 秒
-        });
-    }
-
-    if (copyTokenBtn) {
-        copyTokenBtn.addEventListener('click', () => {
-            tokenOutput.select();
-            tokenOutput.setSelectionRange(0, 99999); // For mobile devices
-            try {
-                document.execCommand('copy');
-                copyTokenBtn.textContent = '已複製!';
-                // 幾秒後恢復按鈕文字
-                setTimeout(() => {
-                    copyTokenBtn.textContent = '複製 Token';
-                }, 2000);
-            } catch (err) {
-                console.error('複製失敗', err);
-                copyTokenBtn.textContent = '複製失敗';
-            }
         });
     }
 }); 
