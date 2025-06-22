@@ -14,7 +14,7 @@
 
 # Custom HTML tags demarcate the sections
 # that are to be sorted by `sort.py`.
-# Note: This version includes custom modifications to the character order. (@t5input)
+# Note: This version includes custom modifications to the character order. (@Wilburkwan)
 
 # The following traditional variants shall be allowed:
 
