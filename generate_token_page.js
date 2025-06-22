@@ -5,6 +5,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const tokenOutput = document.getElementById('tokenOutput');
     const copyTokenBtn = document.getElementById('copyTokenBtn');
 
+    // 新增：深色模式切換邏輯
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // 函數：應用深色模式
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            if (darkModeToggle) {
+                darkModeToggle.querySelector('.swap-on').style.display = 'block';
+                darkModeToggle.querySelector('.swap-off').style.display = 'none';
+            }
+        } else {
+            document.body.classList.remove('dark-mode');
+            if (darkModeToggle) {
+                darkModeToggle.querySelector('.swap-on').style.display = 'none';
+                darkModeToggle.querySelector('.swap-off').style.display = 'block';
+            }
+        }
+    }
+
+    // 初始化深色模式：從 localStorage 讀取或根據系統偏好
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyDarkMode(savedTheme === 'dark');
+    } else {
+        applyDarkMode(systemPrefersDark.matches);
+    }
+
+    // 監聽深色模式切換按鈕點擊事件
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            applyDarkMode(!isDark);
+            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+        });
+    }
+
+    // 監聽系統主題偏好變化
+    systemPrefersDark.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) { // 只有當用戶沒有手動設定時才響應系統變化
+            applyDarkMode(e.matches);
+        }
+    });
+
     if (watchAdBtn) {
         watchAdBtn.addEventListener('click', () => {
             watchAdBtn.disabled = true;
