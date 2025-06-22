@@ -32,7 +32,6 @@
         .container {
             display: flex;
             flex-wrap: wrap;
-            flex: 1;
             padding: 10px; /* Add some padding to the main container */
         }
         .left-panel, .right-panel {
@@ -200,7 +199,6 @@
             padding: 10px;
             text-align: center;
             width: 100%;
-            margin-top: auto;
             font-size: 12px;
             color: #a86e00;
         }
@@ -432,8 +430,12 @@
             padding: 20px;
             text-align: center;
             background-color: #e0e0e0; /* A light background for ads */
-            margin-top: 20px; /* Space after main content */
-            margin-bottom: 20px; /* Space before footer */
+            flex-grow: 1; /* Make it grow and take available space */
+            min-height: 90vh; /* Ensure it takes at least 90% of viewport height */
+            display: flex; /* Make it a flex container to center ad horizontally/vertically */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* To stack ad content vertically */
         }
         body.dark-mode .ad-full-width-section {
             background-color: #222222;
@@ -511,16 +513,29 @@
                 <p>此頁面用於獲取 T5 筆畫輸入法的試用許可。請觀看廣告後獲取 Token 並將其貼入擴充功能設定頁面。</p>
             </div>
         </div>
+        <div class="right-panel">
+            <div class="info-box">
+                <ins class="adsbygoogle"
+                style="display:block; height: 100%; width: 100%;"
+                data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="9897598987"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            </div>
+        </div>
     </div>
 
     <!-- 廣告大版面 -->
     <div class="ad-full-width-section">
-        <h2>廣告區</h2>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
              crossorigin="anonymous"></script>
         <!-- extenion -->
         <ins class="adsbygoogle"
-             style="display:block"
+             style="display:block; height: 100%; width: 100%;"
              data-ad-client="ca-pub-9611199768896429"
              data-ad-slot="9897598987"
              data-ad-format="auto"
@@ -532,7 +547,7 @@
 
     <footer class="footer">
         <div class="text-muted">
-            Copyright &copy; 2024 T5筆畫輸入法. All rights reserved.
+            Copyright &copy; 2025 T5筆畫輸入法. All rights reserved.
         </div>
         <div class="text-muted">
             <a href="privacy.html" class="rnav-link">私隱政策</a> | 
