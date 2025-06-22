@@ -52,11 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (watchAdBtn) {
         watchAdBtn.addEventListener('click', () => {
+            // 如果 Token 已經顯示，則執行複製操作
+            if (tokenOutput.value) {
+                tokenOutput.select();
+                tokenOutput.setSelectionRange(0, 99999); // For mobile devices
+                try {
+                    document.execCommand('copy');
+                    watchAdBtn.textContent = '已複製!';
+                    setTimeout(() => {
+                        watchAdBtn.textContent = '複製 Token';
+                    }, 2000);
+                } catch (err) {
+                    console.error('複製失敗', err);
+                    watchAdBtn.textContent = '複製失敗';
+                }
+                return; // 執行複製後直接返回
+            }
+
+            // 否則，執行獲取 Token 的操作
             watchAdBtn.disabled = true;
             adStatus.textContent = '請稍候...';
-            tokenDisplay.classList.remove('visible');
+            tokenDisplay.style.display = 'none'; // 隱藏 tokenDisplay
             tokenOutput.value = '';
-            copyTokenBtn.textContent = '複製 Token';
+            watchAdBtn.textContent = '正在獲取 Token...';
 
             // 模擬廣告播放時間 (例如 5 秒)
             setTimeout(() => {
@@ -68,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Create a simple token object
                 const tokenPayload = {
                     expiresAt: expiresAt,
-                    appName: "t5input",
+                    appName: "t5input-extension",
                     // You might add more data here in a real scenario, e.g., userId, generationDate
                 };
                 
@@ -77,17 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const encodedToken = btoa(rawToken); // btoa for Base64 encoding
                 
                 tokenOutput.value = encodedToken;
-                tokenDisplay.style.display = 'block'; // Make sure it's visible, it was classList.add('visible')
+                tokenDisplay.style.display = 'block'; // Make sure it's visible
                 
                 // 自動選中 Token 文本
                 tokenOutput.select();
                 tokenOutput.setSelectionRange(0, 99999); // For mobile devices
                 
                 // 提示用戶複製
-                adStatus.textContent = '請複製您的 Token 碼並貼到擴充功能中。 ';
-                alert('廣告已播放完畢！請複製 Token 碼並貼到您的 Chrome 擴充功能中。');
+                adStatus.textContent = '請複製您的 Token 碼並貼到擴充功能中。 ';                
+                watchAdBtn.textContent = '複製 Token'; // 改變按鈕文字為複製 Token
+                watchAdBtn.disabled = false; // 重新啟用按鈕
 
-                watchAdBtn.disabled = false; // 重新啟用按鈕，如果用戶想再次觀看
             }, 5000); // 5 秒
         });
     }
