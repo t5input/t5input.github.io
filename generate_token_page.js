@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (watchAdBtn) {
         watchAdBtn.addEventListener('click', () => {
             watchAdBtn.disabled = true;
-            adStatus.textContent = '廣告播放中，請稍候...';
+            adStatus.textContent = '請稍候...';
             tokenDisplay.classList.remove('visible');
             tokenOutput.value = '';
             copyTokenBtn.textContent = '複製 Token';
@@ -61,9 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
             // 模擬廣告播放時間 (例如 5 秒)
             setTimeout(() => {
                 adStatus.textContent = '廣告播放完畢！';
-                const mockToken = 'MY_MOCK_TOKEN'; // 這是模擬的 Token
-                tokenOutput.value = mockToken;
-                tokenDisplay.classList.add('visible');
+                
+                const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+                const expiresAt = Date.now() + ONE_DAY_MS; // Token expires 24 hours from now
+                
+                // Create a simple token object
+                const tokenPayload = {
+                    expiresAt: expiresAt,
+                    appName: "t5input",
+                    // You might add more data here in a real scenario, e.g., userId, generationDate
+                };
+                
+                // Base64 encode the JSON string
+                const rawToken = JSON.stringify(tokenPayload);
+                const encodedToken = btoa(rawToken); // btoa for Base64 encoding
+                
+                tokenOutput.value = encodedToken;
+                tokenDisplay.style.display = 'block'; // Make sure it's visible, it was classList.add('visible')
                 
                 // 自動選中 Token 文本
                 tokenOutput.select();
