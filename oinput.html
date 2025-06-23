@@ -397,6 +397,89 @@
                 display: none; /* 隱藏圖片 */
             }
         }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 500px; /* Added max-width for better responsiveness */
+            border-radius: 10px;
+            position: relative; /* Needed for the close button positioning */
+        }
+
+        /* The Close Button */
+        .close-modal-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal-btn:hover,
+        .close-modal-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Dark mode for modal */
+        body.dark-mode .modal-content {
+            background-color: #333333;
+            color: #f0f6fc;
+            border-color: #555555;
+        }
+
+        body.dark-mode .close-modal-btn {
+            color: #f0f6fc;
+        }
+
+        /* 設定按鈕樣式 */
+        #settingsButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* 設定彈出式視窗的暗色模式樣式 */
+        body.dark-mode #settingsModal > div {
+            background-color: #333333;
+            color: #f0f6fc;
+            border: 1px solid #555555;
+        }
+
+        body.dark-mode #settingsModal h2 {
+            color: #f0f6fc;
+        }
+
+        body.dark-mode #settingsModal button {
+            background-color: #555555 !important; /* 強制覆蓋 */
+            color: #f0f6fc !important; /* 強制覆蓋 */
+            border: none !important;
+        }
+
+        body.dark-mode #settingsModal button:hover {
+            background-color: #777777 !important; /* 強制覆蓋 */
+        }
+
+        body.dark-mode .close-modal-btn {
+            color: #f0f6fc;
+        }
     </style>
 </head>
 <body>
@@ -426,6 +509,7 @@
                 </ul>
                 <div class="d-flex justify-content-end">
                     <a id="comment_area" href="discuss.html" class="btn btn-outline-light me-2">留言區</a>
+                    <button id="settingsButton" class="btn btn-outline-light me-2" aria-label="Settings">設定</button>
                     <button id="darkModeToggle" aria-label="Toggle dark mode">
                         <!-- 亮色模式圖示（太陽） -->
                         <svg viewBox="0 0 24 24" class="swap-on" style="display:none;">
@@ -606,6 +690,18 @@
             </ul>
         </div>
     </footer>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 300px; border-radius: 10px; text-align: center; position: relative;">
+            <span class="close-modal-btn" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2>設定</h2>
+            <div style="margin-top: 20px;">
+                <button id="strokeModeIndicator" style="margin-bottom: 10px; width: 100%; padding: 10px; background-color: #FF9800; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">UIOJKL模式</button>
+                <button id="numericModeIndicator" style="width: 100%; padding: 10px; background-color: #607D8B; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">數字 0-9</button>
+            </div>
+        </div>
+    </div>
     <script src="oinputScript.min.js"></script>
 </body>
 </html>
