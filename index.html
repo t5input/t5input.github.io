@@ -439,12 +439,15 @@
         }
 
         /* 桌面版 7:3 */
-        .left-panel { flex: 7 1 0; }
-        .right-panel { flex: 3 1 0; }
+        .left-panel { flex: 7 1 0; min-width: 0; }
+        .right-panel { flex: 3 1 0; min-width: 0; }
 
-        /* 平板/手機版 5:5 */
+        /* 平板/手機 5:5 */
         @media (max-width: 900px) {
-          .left-panel, .right-panel { flex: 1 1 50%; }
+          .left-panel, .right-panel {
+            flex: 1 1 50%;
+            min-width: 0;
+          }
         }
         @media (max-width: 600px) {
           .container { flex-direction: column; }
