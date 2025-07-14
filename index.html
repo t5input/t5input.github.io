@@ -9,7 +9,7 @@
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="T5筆畫輸入法線上版，提供方便、免安裝的筆畫輸入法、字典和教學，讓您輕鬆使用並查詢筆畫輸入法。">
-    <meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆劃碼, 筆劃查詢, 筆劃查詢, 筆劃字典, 筆劃字典, 免安裝, 筆劃輸入法查詢, 筆劃輸入法網頁, 網上筆劃輸入法">
+    <meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆畫碼, 筆劃查詢, 筆劃查詢, 筆劃字典, 筆劃字典, 免安裝, 筆劃輸入法查詢, 筆劃輸入法網頁, 網上筆劃輸入法">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
     <script>
@@ -31,13 +31,19 @@
             display: flex;
             flex-wrap: wrap;
             flex: 1;
+            min-width: 0; /* 新增，避免子元素溢出 */
         }
         .left-panel, .right-panel {
-            flex: 2;
+            flex: 1 1 0; /* 讓左右panel都能自動縮放 */
+            min-width: 0; /* 新增，避免內容撐爆 */
             padding: 10px;
+            box-sizing: border-box;
+        }
+        .left-panel {
+            /* 移除原本的 flex: 2;，改用上面flex: 1 1 0; */
         }
         .right-panel {
-            flex: 1; /* Adjust this to control the width ratio */
+            /* 移除原本的 flex: 1;，改用上面flex: 1 1 0; */
         }
         .table-responsive {
             display: block;
@@ -423,6 +429,21 @@
         body.dark-mode .close-modal-btn {
             color: #f0f6fc;
         }
+
+        .adsbygoogle {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .left-panel, .right-panel {
+                flex: 1 1 50%;
+                min-width: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -531,20 +552,16 @@
                 crossorigin="anonymous"></script>
             <!-- 水平 -->
             <ins class="adsbygoogle"
-                style="display:block;"
+                style="display:inline-block;width:728px;height:90px"
                 data-ad-client="ca-pub-9611199768896429"
-                data-ad-slot="5474900563"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
+                data-ad-slot="5474900563"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
             <ins class="adsbygoogle"
-                style="display:block;"
+                style="display:inline-block;width:728px;height:90px"
                 data-ad-client="ca-pub-9611199768896429"
-                data-ad-slot="1685906124"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
+                data-ad-slot="1685906124"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
