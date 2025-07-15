@@ -9,7 +9,7 @@
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="筆畫輸入法線上版，提供方便、免安裝的筆畫輸入法、字典和教學，讓您輕鬆使用並使用完整版筆畫輸入法。">
-    <meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆畫碼, 筆劃查詢, 筆畫查詢, 筆劃字典, 筆畫字典, 免安裝, 筆劃輸入法查詢, 筆劃輸入法網頁, 網上筆劃輸入法">
+    <meta name="Keywords" content=" 中文輸入法, 漢字編碼, Input Method, Chinese Input, Stroke-based, T5, T5input, 筆畫, 筆劃,輸入法, 筆劃輸入法 , 筆畫輸入法, 筆劃順序, 筆畫順序, 筆劃碼, 筆劃碼, 筆劃查詢, 筆劃查詢, 筆劃字典, 筆劃字典, 免安裝, 筆劃輸入法查詢, 筆劃輸入法網頁, 網上筆劃輸入法">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
@@ -36,13 +36,31 @@
             display: flex;
             flex-wrap: wrap;
             flex: 1;
+            min-width: 0; /* 新增，避免子元素溢出 */
         }
         .left-panel, .right-panel {
-            flex: 2;
+            flex: 1 1 0; /* 讓左右panel都能自動縮放 */
+            min-width: 0; /* 新增，避免內容撐爆 */
             padding: 10px;
+            box-sizing: border-box;
         }
-        .right-panel {
-            flex: 1; /* Adjust this to control the width ratio */
+        /* 桌面版 7:3 */
+        .left-panel { flex: 7 1 0; min-width: 0; }
+        .right-panel { flex: 3 1 0; min-width: 0; }
+        /* 平板/手機 5:5 */
+        @media (max-width: 900px) {
+          .left-panel, .right-panel {
+            flex: 1 1 50%;
+            min-width: 0;
+          }
+        }
+        /* 廣告自適應寬度 */
+        .adsbygoogle {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
+            display: block;
+            margin: 0 auto;
         }
         .table-responsive {
             display: block;
