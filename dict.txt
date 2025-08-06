@@ -12207,7 +12207,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 揻	ukuuoukoukjo
 揼	ukuuoikukkoj
 揽	ukuiioujikok
-揾	ukuikuuikiiu
 揿	ukuouuukokoj
 搀	ukuokikuokjj
 搁	ukuijkokjiku
