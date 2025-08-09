@@ -6275,7 +6275,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 䱺	okikuiujjjjikiuikujou
 䱻	okikuiujjjjikuijkokjj
 䱼	okikuiujjjjkuouiiukoj
-䱽	okikuiujjjjojukuuoiku
 䱾	okikuiujjjjikuuikuikou
 䱿	okikuiujjjjuikuuuiooui
 䲀	uiujouuiokjokikuiujjjj
@@ -7854,7 +7853,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 勷	juikuikuuuiiuokojko
 勸	uiiikuikuoijuuuiuko
 勺	okj
-勻	okuu
 勼	okok
 勽	okoj
 勾	okkj
@@ -9502,7 +9500,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 奩	uojuikuikuikuk
 奪	uojoijuuuiuuij
 奫	uojjjuoiiukukui
-奬	kiuookjjukjuoj
 奭	uuoikuuuoikuuoj
 奮	uojoijuuuiuikuiu
 奯	uojiuiuuouiookjo
@@ -10015,7 +10012,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 孪	juokojkku
 孫	kiuokkjioj
 孬	uoijkoukiu
-孭	kkuikuuuoj
 孮	kiujjkuuioj
 孯	uikuikkjkku
 孰	juikukiuokj
@@ -12176,7 +12172,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 換	uiuokikojuoj
 揜	uiuojuikuuoi
 揝	uiuokjijikuu
-揞	ukujujouikuu
 揟	uiukiuojikuu
 揠	uiuuikuukouk
 握	uiukuoukjuiu
@@ -12184,7 +12179,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 揣	uiuikiuoikii
 揤	uiukuukjki
 揥	uiujujojkiki
-揦	ukuuikuiojik
 揧	uikuiojiiouui
 揨	uiujuikujkui
 揩	uiuukokoikuu
@@ -18745,7 +18739,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 綆	kkjjjjuikuuoj
 綇	kkjjjjuikokuu
 綈	kkjjjjjokukio
-綉	kkjjjjouiojok
 綊	kkjjjjuojojoj
 綋	kkjjjjjjkuokj
 綌	kkjjjjojojiku
@@ -19687,7 +19680,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 脴	okjjuoijiku
 脵	okuuikuuuoj
 脶	okuuikuikoj
-脷	okuuouiojik
 脸	okuuojujjou
 脹	okuuuiuuukoj
 脺	okuujuojojui
@@ -20513,7 +20505,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 葮	uiioiuuuokkj
 葯	uiikkjjjjokj
 葰	uiioikjojokj
-葱	iuuiokoojjkjj
 葲	iuuioikuukkoj
 葳	uiiuoukoukoj
 葴	uiiuouikukoj
@@ -20900,7 +20891,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 藱	uiijuojuoikuuokkj
 藲	uiiuiojuikuikuikuk
 藳	iuuijuikuikikuouioj
-藴	iuuikkjjjjikuuikiiu
 藵	uiiuoiikuuiojjuokoj
 藶	uiiuoouiojouiojiuiu
 藷	uiijuuuikuuiuoikuu
@@ -21623,7 +21613,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 裄	juoiojooiuuk
 装	jjiuiujuokoj
 裆	juoiojijokuu
-裇	juoiojoikiiu
 裈	juoiojjkukui
 裉	jkiojkuukoj
 裊	oikuuukjuokoj
