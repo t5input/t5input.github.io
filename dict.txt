@@ -14810,7 +14810,6 @@ max_ouraie_lejgtu: 1         # 不生成詞彙
 渦	jjuikkikiku
 渧	jjujujojkiki
 渨	jjuikuiuukoj
-温	jjjikuuikiiu
 渪	jjjoikuikiuj
 渫	jjuuiiukuioj
 測	jjuikuuuojii
