@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>T5筆畫輸入法 Chrome 擴充功能下載</title>
     <link rel="shortcut icon" href="image/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
+
         gtag('config', 'G-1KQPDXF72N');
     </script>
     <style>
@@ -32,8 +33,8 @@
             justify-content: center;
             min-height: 90vh;
             width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 20px; /* Added padding for better spacing */
+            box-sizing: border-box; /* Include padding in width */
         }
         .ad-side {
             flex: 0 0 260px;
@@ -108,6 +109,7 @@
             transform: translateY(-2px);
             color: #222;
         }
+        /* 深色模式 */
         body.dark-mode {
             background: linear-gradient(135deg, #232526 0%, #414345 100%);
             color: #f0f6fc;
@@ -138,6 +140,7 @@
             background: linear-gradient(90deg, #777777 0%, #555555 100%);
             color: #ffffff;
         }
+        /* 按鈕樣式 */
         #darkModeToggle {
             background: none;
             border: 2px solid currentColor;
@@ -159,6 +162,7 @@
         #darkModeToggle:hover {
             opacity: 0.8;
         }
+        /* Footer */
         .footer {
             padding: 10px;
             text-align: center;
@@ -197,7 +201,7 @@
         }
         @media (max-width: 576px) {
             .main-flex-wrapper {
-                min-height: 80vh;
+                min-height: 80vh; /* Adjust for smaller screens */
                 padding: 15px;
             }
             .footer-link-spacing {
@@ -263,6 +267,7 @@
     <div class="main-flex-wrapper">
         <div class="ad-side">
             <div class="ad-block">
+                <!-- 左側廣告 -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block;width:260px;height:300px;"
@@ -271,24 +276,18 @@
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
                 <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
         </div>
         <div class="content-card">
-            <h1>下載 T5筆畫輸入法 Chrome Extension (試用版)即將推出</h1>
+            <h1>下載 T5筆畫輸入法 Chrome Extension (試用版)</h1>
             <p>輕鬆安裝我們的 Chrome Extension，立即體驗便捷的筆畫輸入。</p>
             <p>透過我們的擴充功能，您可以在任何網頁上使用 T5 筆畫輸入法，無需安裝其他軟體，享受流暢的輸入體驗。它支援繁體中文，介面簡潔易用，是您瀏覽網頁、輸入中文的最佳選擇。此版本為試用版，部分功能可能受限。</p>
-            
-            <div class="d-flex justify-content-center align-items-center flex-wrap" style="gap: 15px; margin-bottom: 15px;">
-                <a href="https://forms.gle/WKofXxfy56YdGnME7" class="btn btn-black" style="height: 83px; padding: 0; border-radius: 12px; overflow: hidden; border: 1px solid lightgray;" target="_blank">
-                    <img src="image/chromeWebStore.png" alt="Download on the Chrome Web Store" style="height: 100%; width: 100%; object-fit: contain;">
-                </a>
-                <a href="https://forms.gle/WKofXxfy56YdGnME7" class="btn btn-black" style="height: 83px; padding: 0; border-radius: 12px; overflow: hidden;" target="_blank">
-                    <img src="image/edge-add-ons-badge.png" alt="Download on the Edge Add-ons" style="height: 100%; width: 100%; object-fit: contain;">
-                </a>
-            </div>
-
+            <a href="https://chrome.google.com/webstore/detail/t5-stroke-input-method/YOUR_EXTENSION_ID" target="_blank" class="btn btn-primary">
+                立即前往 Chrome 線上應用程式商店 (即將推出)
+            </a>
+            <br>
             <a href="https://docs.google.com/gview?url=https://raw.githubusercontent.com/t5input/t5input.github.io/main/pdf/t5input_user_guide.pdf&embedded=true" target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-3">
                 T5 筆畫輸入法Extension用戶指南 (PDF)
             </a>
@@ -298,6 +297,7 @@
         </div>
         <div class="ad-side">
             <div class="ad-block">
+                <!-- 右側廣告 -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429" crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block;width:260px;height:300px;"
@@ -306,7 +306,7 @@
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
                 <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
         </div>
@@ -376,4 +376,4 @@
     </script>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html> 
