@@ -148,6 +148,127 @@
             }
         }
 
+        /* Custom Toggle Switch CSS */
+        .custom-checkbox {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 20px;
+            /* Added spacing */
+        }
+
+        .custom-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        .custom-checkbox input[type="checkbox"]+label {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            /* Reset default margin */
+            cursor: pointer;
+        }
+
+        .custom-checkbox input[type="checkbox"]+label>.status-switch {
+            cursor: pointer;
+            width: 100%;
+            height: 80%;
+            position: relative;
+            background-color: grey;
+            color: white;
+            transition: all 0.5s ease;
+            padding: 3px;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .custom-checkbox input[type="checkbox"]+label>.status-switch:before,
+        .custom-checkbox input[type="checkbox"]+label>.status-switch:after {
+            border-radius: 2px;
+            height: calc(100% - 6px);
+            width: calc(50% - 3px);
+            display: flex;
+            align-items: center;
+            position: absolute;
+            justify-content: center;
+            transition: all 0.3s ease;
+            top: 3px;
+            /* Ensure vertical centering */
+        }
+
+        .custom-checkbox input[type="checkbox"]+label>.status-switch:before {
+            background-color: white;
+            color: black;
+            box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+            left: 3px;
+            z-index: 10;
+            content: attr(data-unchecked);
+        }
+
+        .custom-checkbox input[type="checkbox"]+label>.status-switch:after {
+            right: 3px;
+            content: attr(data-checked);
+        }
+
+        /* Checked state */
+        .custom-checkbox input[type="checkbox"]:checked+label>.status-switch {
+            background-color: #40c253;
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+label>.status-switch:after {
+            left: 3px;
+            content: attr(data-unchecked);
+            color: white;
+            /* Adjust text color if needed */
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+label>.status-switch:before {
+            color: #40c253;
+            left: 50%;
+            content: attr(data-checked);
+        }
+
+        /* Dark mode adjustments for the toggle */
+        body.dark-mode .custom-checkbox input[type="checkbox"]+label>.status-switch {
+            background-color: #555;
+            /* Consistent with other dark mode elements */
+            border: 1px solid #777;
+        }
+
+        body.dark-mode .custom-checkbox input[type="checkbox"]+label>.status-switch:before {
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .custom-checkbox input[type="checkbox"]:checked+label>.status-switch {
+            background-color: #40c253;
+            /* Keep green for active state */
+            border: none;
+        }
+
+        body.dark-mode .custom-checkbox input[type="checkbox"]:checked+label>.status-switch:before {
+            color: #40c253;
+            background-color: #fff;
+            /* Keep the knob white or match theme? User css had white knob with colored text. Let's keep it consistent. */
+            color: #40c253;
+        }
+
+        .setting-item {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .setting-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        body.dark-mode .setting-label {
+            color: #f0f6fc;
+        }
+
         /* 廣告自適應寬度 */
         .adsbygoogle {
             max-width: 100% !important;
@@ -926,14 +1047,41 @@
                 style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
             <h2>設定</h2>
             <div style="margin-top: 20px;">
-                <button id="strokeModeIndicator"
-                    style="margin-bottom: 10px; width: 100%; padding: 10px; background-color: #FF9800; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">UIOJKL模式</button>
-                <button id="numericModeIndicator"
-                    style="width: 100%; padding: 10px; background-color: #607D8B; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-bottom: 10px;">數字
-                    0-9</button>
-                <button id="frequencySortIndicator"
-                    style="width: 100%; padding: 10px; background-color: #9E9E9E; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">記憶:
-                    關</button>
+                <!-- Stroke Mode Toggle -->
+                <div class="setting-item">
+                    <div class="setting-label">輸入模式</div>
+                    <div class="custom-checkbox">
+                        <input id="strokeModeInput" type="checkbox" name="strokeMode">
+                        <label for="strokeModeInput">
+                            <div class="status-switch" data-unchecked="JKLUIO" data-checked="UIOJKL">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Numeric Mode Toggle -->
+                <div class="setting-item">
+                    <div class="setting-label">數字排序</div>
+                    <div class="custom-checkbox">
+                        <input id="numericModeInput" type="checkbox" name="numericMode">
+                        <label for="numericModeInput">
+                            <div class="status-switch" data-unchecked="0-9" data-checked="1-0">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Frequency Sort Toggle -->
+                <div class="setting-item">
+                    <div class="setting-label">記憶功能</div>
+                    <div class="custom-checkbox">
+                        <input id="frequencySortInput" type="checkbox" name="frequencySort">
+                        <label for="frequencySortInput">
+                            <div class="status-switch" data-unchecked="關" data-checked="開">
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
