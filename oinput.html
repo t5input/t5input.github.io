@@ -1082,6 +1082,17 @@
                         </label>
                     </div>
                 </div>
+
+                <!-- Memory Backup/Restore -->
+                <div class="setting-item">
+                    <div class="setting-label">已記憶字詞備份</div>
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
+                        <button id="exportMemoryBtn" style="flex: 1; margin: 0;">匯出</button>
+                        <button onclick="document.getElementById('memoryFileInput').click()"
+                            style="flex: 1; margin: 0;">匯入</button>
+                        <input type="file" id="memoryFileInput" style="display: none;" accept=".json">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
