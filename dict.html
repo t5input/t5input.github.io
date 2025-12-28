@@ -24,262 +24,252 @@
     <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
     <style>
+        :root {
+            --primary-color: #d26800;
+            --primary-hover: #a86e00;
+            --bg-light: #f8f9fa;
+            --card-bg-light: #ffffff;
+            --text-light: #333333;
+            --border-light: #dee2e6;
+
+            --bg-dark: #121212;
+            --card-bg-dark: #1e1e1e;
+            --text-dark: #ffffff;
+            --border-dark: #333333;
+        }
+
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
             display: flex;
-            font-family: Arial, sans-serif;
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        /* Dark Mode Override */
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
         }
 
-        /* Footer styling */
-        .footer {
-            padding: 10px;
-            text-align: center;
+        /* Navbar Customization (Preserving structure but ensuring integration) */
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content Container */
+        .main-container {
+            flex: 1;
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
             width: 100%;
-            margin-top: auto;
+        }
+
+        .content-card {
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode .content-card {
+            background-color: #333333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            font-size: 2em;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
         }
 
-        .rnav-link {
-            color: #FFFFFF8C;
-            text-decoration: none;
+        p.lead {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
         }
 
-        .rnav-link:hover {
-            background-color: #45a049;
-            /* Darker green on hover */
+        body.dark-mode p.lead {
+            color: #aaa;
         }
 
-        .info-box {
-            background-color: #fff4e1;
-            border: 1px solid #d4b087;
-            border-radius: 10px;
-            padding: 20px;
-            width: 500px;
-            margin: auto;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        /* Search Input Styling */
+        .search-wrapper {
             position: relative;
-            max-width: 90%;
-            /* 設定最大寬度為90% */
-            margin: auto;
-            /* 使其居中 */
-            box-sizing: border-box;
-            /* 包括內邊距和邊框 */
+            margin-bottom: 2rem;
         }
 
-        .info-box h1 {
-            font-size: 1.2em;
-            color: #d26800;
+        .form-control-lg {
+            border-radius: 50px;
+            padding-left: 1.5rem;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s;
         }
 
-        .info-box p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #603813;
-            margin-bottom: 15px;
+        .form-control-lg:focus {
+            box-shadow: 0 0 0 0.25rem rgba(210, 104, 0, 0.25);
+            border-color: var(--primary-color);
         }
 
-        .keyboard {
+        body.dark-mode .form-control-lg {
+            background-color: #2d2d2d;
+            border-color: var(--border-dark);
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .form-control-lg::placeholder {
+            color: #888;
+        }
+
+        /* Table Styling */
+        .table-custom {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table-custom th {
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .table-custom td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: middle;
+        }
+
+        body.dark-mode .table-custom td {
+            border-bottom-color: #f0f6fc;
+        }
+
+        .table-custom tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #fff3e0;
+            /* Light orange tint matching primary */
+        }
+
+        body.dark-mode .table-custom tbody tr:hover {
+            background-color: #4d4d4d;
+        }
+
+        .stroke-badges {
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 2px;
+        }
+
+        /* Info Box Redesign */
+        .info-card {
+            background-color: #fff8e1;
+            /* Light orange tint */
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        body.dark-mode .info-card {
+            background-color: #2a2015;
+            /* Dark orange tint */
+            color: #e0e0e0;
+        }
+
+        .info-card h2 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .keyboard-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 5px;
-            text-align: center;
-            margin: 10px 0;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 1rem 0;
+            max-width: 300px;
         }
 
-        .keyboard div {
-            background-color: #fff;
+        .key-item {
+            background-color: white;
             border: 1px solid #d4b087;
-            padding: 8px;
-            font-size: 14px;
-            border-radius: 5px;
-        }
-
-        .highlight {
-            color: #d26800;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 6px;
             font-weight: bold;
+            color: #333;
         }
 
-        .footer {
-            font-size: 12px;
-            color: #a86e00;
+        body.dark-mode .key-item {
+            background-color: #333;
+            border-color: #555;
+            color: #fff;
         }
 
-        .footer a {
-            color: #d26800;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* 關閉按鈕 */
         .close-btn {
             position: absolute;
             top: 10px;
-            right: 10px;
-            background-color: transparent;
+            right: 15px;
+            background: none;
             border: none;
-            font-size: 18px;
+            font-size: 1.5rem;
+            color: #999;
             cursor: pointer;
-            color: #d26800;
         }
 
         .close-btn:hover {
-            color: #a86e00;
+            color: var(--primary-color);
         }
 
-        /* 暗色模式樣式 */
-        body.dark-mode {
-            background-color: #121212;
-            color: #f0f6fc;
-        }
-
-        body.dark-mode .navbar {
-            background-color: #1f1f1f;
+        /* Footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 2rem 0;
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.9rem;
         }
 
         body.dark-mode .footer {
-            background-color: #1f1f1f;
-            color: #f0f6fc;
+            background-color: #1a1a1a;
+            color: #888;
         }
 
-        body.dark-mode .table-hover tbody tr:hover {
-            background-color: #333333;
+        body.dark-mode .footer a {
+            color: #bbb;
         }
 
-        body.dark-mode .table th,
-        body.dark-mode .table td {
-            color: #f0f6fc;
-            background: #333333;
+        body.dark-mode .footer a:hover {
+            color: #fff;
         }
 
-        body.dark-mode .form-control {
-            background-color: #333333;
-            color: #f0f6fc;
-            border-color: #555555;
-        }
-
-        body.dark-mode .form-control::placeholder {
-            color: #f0f6fc;
-        }
-
-        /* 新增的樣式 */
-        body.dark-mode .compact-table {
-            background-color: #333333;
-        }
-
-        body.dark-mode .compact-table th,
-        body.dark-mode .compact-table td {
-            background-color: #333333;
-            color: #f0f6fc;
-        }
-
-        body.dark-mode #strokeInput {
-            color: #121212;
-        }
-
-        body.dark-mode .table-responsive {
-            background-color: #333333;
-        }
-
-        body.dark-mode .table-responsive .table {
-            background-color: #333333;
-        }
-
-        body.dark-mode .table-responsive .table th,
-        body.dark-mode .table-responsive .table td {
-            color: #f0f6fc;
-        }
-
-        body.dark-mode .keyboard {
-            color: #333333;
-        }
-
-        body.dark-mode .keyboard div {
-            color: #f0f6fc;
-            background-color: #333333;
-        }
-
-        /* Include the CSS for the buttons here */
-        button {
-            display: flex;
-            background-color: #4CAF50;
-            /* Green background */
-            border: none;
-            /* Remove borders */
-            justify-content: center;
-            /* Center horizontally */
-            align-items: center;
-            /* Center vertically */
-            color: white;
-            /* White text */
-            padding: 8px 20px;
-            /* Some padding */
-            text-align: center;
-            /* Center the text */
-            text-decoration: none;
-            /* Remove underline */
-            display: inline-block;
-            /* Get the elements to line up nicely */
-            font-size: 16px;
-            /* Increase font size */
-            margin: 4px 2px;
-            /* Add some margin */
-            cursor: pointer;
-            /* Add a pointer cursor on hover */
-            border-radius: 12px;
-            /* Rounded corners */
-            transition: background-color 0.3s ease;
-            /* Smooth background color change on hover */
-        }
-
-        button:hover {
-            background-color: #45a049;
-            /* Darker green on hover */
-        }
-
-        /* Center the button container */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        #strokeInput {
-            color: white;
-        }
-
-        /* 按鈕樣式 */
+        /* Dark Mode Toggle Button in Navbar */
         #darkModeToggle {
             background: none;
-            border: 2px solid currentColor;
-            border-radius: 4px;
-            padding: 4px;
-            cursor: pointer;
-            color: #ffffff;
-            transition: color 0.3s;
-            margin: 4px 2px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
         }
 
-        /* 深色模式下的按鈕顏色 */
-        body.dark-mode #darkModeToggle {
-            color: #ffffff;
-        }
-
-        /* SVG 圖示大小 */
         .swap-on,
         .swap-off {
             width: 24px;
@@ -287,102 +277,36 @@
             transition: display 0.3s;
         }
 
-        /* 懸停效果 */
-        #darkModeToggle:hover {
-            opacity: 0.8;
+        /* Stroke Badges */
+        .stroke-badge {
+            display: inline-block;
+            background-color: #fff3e0;
+            color: #d26800;
+            border: 1px solid #d26800;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+            font-family: monospace;
         }
 
-        #comment_area {
-            border: none;
-            cursor: pointer;
-            margin: 4px 2px;
+        body.dark-mode .stroke-badge {
+            background-color: #3e2723;
+            color: #ffcc80;
+            border-color: #ffcc80;
         }
 
-        #comment_area:focus {
-            outline: none;
-        }
-
-        /* 當處於黑色模式時，調整 footer 的文字和鏈接顏色 */
-        body.dark-mode .footer {
-            background-color: #1f1f1f;
-            /* 確保背景為深色 */
-            color: #f0f6fc;
-            /* 將文字顏色設為白色 */
-        }
-
-        body.dark-mode .footer a,
-        body.dark-mode .footer .text-muted {
-            color: #f0f6fc;
-        }
-
-        body.dark-mode .footer a:hover {
-            color: #bbbbbb;
-            /* 懸停時的鏈接顏色（淡灰色） */
-        }
-
-        /* 當處於黑色模式時，調整 info-box 的背景和文字顏色 */
-        body.dark-mode .info-box {
-            background-color: #333333;
-            /* 灰色背景 */
-            color: #f0f6fc;
-            /* 白色文字 */
-            border-color: #555555;
-            /* 調整邊框顏色（如果有） */
-        }
-
-        /* 調整 info-box 內部元素的顏色 */
-        body.dark-mode .info-box h1 {
-            color: #f0f6fc;
-        }
-
-        body.dark-mode .info-box p {
-            color: #dddddd;
-        }
-
-        /* 黑色模式下的 footer 樣式 */
-        body.dark-mode .footer {
-            background-color: #121212;
-            /* 深色背景 */
-            color: #ffffff;
-            /* 預設文字顏色為白色 */
-        }
-
-        body.dark-mode .footer a {
-            color: #ffffff;
-            /* 將鏈接文字設為白色 */
-        }
-
-        body.dark-mode .footer a:hover {
-            color: #bbbbbb;
-            /* 懸停時的鏈接顏色 */
-        }
-
-        body.dark-mode .footer .text-muted {
-            color: #ffffff !important;
-            /* 強制覆蓋 text-muted 類名的樣式 */
-        }
-
-        .container {
-            margin-bottom: 100px;
-            /* 調整這裡的數值來控制空間大小 */
-        }
-
-        /* 新增廣告容器的簡易示意樣式，可自由調整 */
-        .ad-space {
-            min-height: 600px;
-            margin-top: 20px;
+        /* Ad containers */
+        .ad-container {
             text-align: center;
-            padding: 10px;
-        }
-
-        .ad-space p {
-            margin-top: 20px;
+            margin: 1rem 0;
+            min-height: 90px;
         }
     </style>
 </head>
 
 <body>
-    <!-- 導覽列 (Navbar) -->
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -430,83 +354,87 @@
         </div>
     </nav>
 
-    <!-- 以 Bootstrap row 建立三欄式：左廣告 / 主內容 / 右廣告 -->
-    <div class="container-fluid">
-        <div class="row">
+    <div class="main-container">
 
-            <div class="col-md-3 d-none d-md-block" style="position: sticky; top: 0;">
+        <!-- Top Ad Space -->
+        <div class="ad-container">
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="1685906124" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="content-card">
+            <h1>筆畫輸入法字典</h1>
+            <p class="lead">主碼表源自行政院數位發展部，CNS11643中文標準交換碼全字庫。</p>
+
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="正在載入字典資料，請稍候..." disabled oninput="searchCharacter()"
+                    class="form-control form-control-lg">
             </div>
 
-            <!-- 中間主內容 -->
-            <div class="col-md-6">
-                <div class="container mt-3">
-                    <h1>筆畫輸入法字典</h1>
-                    <p>主碼表源自行政院數位發展部，CNS11643中文標準交換碼全字庫。</p>
-                    <p>請輸入漢字查詢筆畫順序：</p>
-                    <input type="text" id="searchInput" placeholder="正在載入字典資料，請稍候..." disabled
-                        oninput="searchCharacter()" class="form-control mb-3">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>字符</th>
-                                    <th>筆畫順序</th>
-                                </tr>
-                            </thead>
-                            <tbody id="results"></tbody>
-                        </table>
-                    </div>
-                    <div style="margin: 100px 0;"></div>
-                    <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
-                        crossorigin="anonymous"></script>
-                    <!-- 水平 -->
-                    <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
-                        data-ad-client="ca-pub-9611199768896429" data-ad-slot="5474900563" data-ad-format="auto"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                    <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
-                        crossorigin="anonymous"></script>
-                    <!-- 水平2 -->
-                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
-                        data-ad-slot="1685906124" data-ad-format="auto"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                    <!-- dict -->
-                    <amp-auto-ads type="adsense" data-ad-client="ca-pub-9611199768896429">
-                    </amp-auto-ads>
-                </div>
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th width="30%">字符</th>
+                            <th>筆畫順序</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                        <!-- Results will be injected here -->
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="info-box" id="infoBox">
-                    <button class="close-btn" onclick="closeInfoBox()">×</button>
-                    <h1>T5線上筆畫輸入法</h1>
-                    <p>筆畫輸入法是一種根據筆順輸入相應筆畫字碼來輸入漢字的中文輸入法，是最簡單易學的一種漢字輸入法，常見於手機上。筆劃輸入法是一種根據筆順輸入相應筆畫字碼來輸入漢字的中文輸入法，是最簡單易學的一種漢字輸入法，常見於手機上。此輸入法中的筆畫類似永字八法中的分類，包括橫、豎、撇、點和折。詳情請參考相關網頁。
-                    </p>
-
-                    <div class="keyboard">
-                        <div>一</div>
-                        <div>丨</div>
-                        <div>丿</div>
-                        <div>丶</div>
-                        <div>乛</div>
-                    </div>
-
-                    <p>此輸入法目前有 <span class="highlight">20948</span> 中文字，<span class="highlight">30591</span> 中文詞語。</p>
-
-                    <p class="footer">
-                        系統沒有的字詞，請用我們的
-                        <a href="discuss.html">改善功能</a>建議加入，我們會作定期的更新。<br>
-                        基本操作可參考我們的
-                        <a href="about.html">簡介</a>。
-                    </p>
+            <div id="loadingIndicator" style="display: none; text-align: center; margin-top: 1rem;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
         </div>
+
+        <!-- Middle Ad Space -->
+        <div class="ad-container">
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="5474900563" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="info-card" id="infoBox">
+            <button class="close-btn" onclick="closeInfoBox()" aria-label="Close">×</button>
+            <h2>T5線上筆畫輸入法</h2>
+            <p>筆畫輸入法是一種根據筆順輸入相應筆畫字碼來輸入漢字的中文輸入法，是最簡單易學的一種漢字輸入法。</p>
+            <p><strong>分類：</strong>橫 (一)、豎 (丨)、撇 (丿)、點 (丶)、折 (乛)。</p>
+
+            <div class="keyboard-grid">
+                <div class="key-item">一</div>
+                <div class="key-item">丨</div>
+                <div class="key-item">丿</div>
+                <div class="key-item">丶</div>
+                <div class="key-item">乛</div>
+            </div>
+
+            <p class="mt-3">目前收錄： <strong style="color: var(--primary-color);">20948</strong> 中文字，<strong
+                    style="color: var(--primary-color);">30591</strong> 中文詞語。</p>
+            <p><small>系統沒有的字詞，請用我們的 <a href="discuss.html">改善功能</a> 建議加入。</small></p>
+        </div>
+
     </div>
 
+    <!-- Auto Ads -->
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-9611199768896429"></amp-auto-ads>
+
+    <script src="dict.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const infoBox = document.getElementById('infoBox');
@@ -521,61 +449,20 @@
             localStorage.setItem('infoBoxHidden', 'true');
         }
     </script>
-    <script src="dict.min.js"></script>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-1 my-4 py-2 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">© t5input</span>
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="text-muted">© 2024 t5input</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="support.html">支持</a></li>
+                    <li class="ms-3"><a class="text-muted" href="privacy-policy.html">隱私權政策</a></li>
+                    <li class="ms-3"><a class="text-muted" href="https://github.com/t5input" target="_blank">GitHub</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3">
-                    <a class="text-muted" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <use xlink:href="#twitter"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li class="ms-3">
-                    <a href="support.html" class="text-muted text-decoration-none">支持</a>
-                    <svg class="bi" width="24" height="24">
-                        <use xlink:href="#"></use>
-                    </svg>
-                    <a href="privacy-policy.html" class="text-muted text-decoration-none">隱私權政策</a>
-                    <a class="text-muted" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <use xlink:href="#"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li class="ms-3">
-                    <a class="text-muted" href="https://github.com/t5input">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            class="bi bi-github" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-                                     0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                     -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87
-                                     2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
-                                     0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0
-                                     .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
-                                     1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16
-                                     1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87
-                                     3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
-                                     1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0
-                                     16 8c0-4.42-3.58-8-8-8z" />
-                        </svg>
-                        <svg class="bi" width="24" height="24">
-                            <use xlink:href="#"></use>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
         </div>
     </footer>
 </body>
