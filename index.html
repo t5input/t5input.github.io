@@ -688,7 +688,7 @@
                     </li>
                 </ul>
                 <div class="d-flex justify-content-end">
-                    <button id="comment_area" href="discuss.html" class="btn btn-outline-light me-2">留言區</button>
+                    <a id="comment_area" href="discuss.html" class="btn btn-outline-light me-2">留言區</a>
                     <button id="settingsButton" class="btn btn-outline-light me-2" aria-label="Settings">設定</button>
                     <button id="darkModeToggle" aria-label="Toggle dark mode">
                         <!-- 亮色模式圖示（太陽） -->
@@ -892,10 +892,47 @@
         </div>
     </footer>
 
+    <style>
+        /* ... existing styles ... */
+        /* Dark Mode for Settings Modal */
+        body.dark-mode #settingsModal .modal-content-custom {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #555 !important;
+        }
+
+        body.dark-mode #settingsModal .close-modal-btn {
+            color: #fff !important;
+        }
+
+        body.dark-mode #settingsModal .setting-label {
+            color: #fff !important;
+        }
+
+        body.dark-mode #settingsModal h2 {
+            color: #fff !important;
+        }
+
+        /* Ensure input fields in modal are readable in dark mode */
+        body.dark-mode #settingsModal input[type="text"] {
+            background-color: #444 !important;
+            color: #fff !important;
+            border-color: #666 !important;
+        }
+
+        body.dark-mode #settingsModal input[type="text"]::placeholder {
+            color: #bbb !important;
+        }
+
+        body.dark-mode #customPhraseList {
+            border-color: #555 !important;
+            background-color: #2a2a2a;
+        }
+    </style>
     <!-- Settings Modal -->
     <div id="settingsModal"
         style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div
+        <div class="modal-content-custom"
             style="background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 300px; border-radius: 10px; text-align: center; position: relative;">
             <span class="close-modal-btn"
                 style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
@@ -945,6 +982,22 @@
                         <button onclick="document.getElementById('memoryFileInput').click()"
                             style="flex: 1; margin: 0;">匯入</button>
                         <input type="file" id="memoryFileInput" style="display: none;" accept=".json">
+                    </div>
+                </div>
+
+                <!-- Custom Phrases -->
+                <div class="setting-item">
+                    <div class="setting-label">新增自訂詞語</div>
+                    <div style="display: flex; gap: 5px; flex-direction: column;">
+                        <input type="text" id="customPhraseTrigger" placeholder="觸發字 (例如: 辦)" class="form-control"
+                            style="margin-bottom: 5px; background-color: white; color: black;">
+                        <input type="text" id="customPhraseContent" placeholder="詞語內容 (例如: 公室)" class="form-control"
+                            style="margin-bottom: 5px; background-color: white; color: black;">
+                        <button onclick="addCustomPhraseFromUI()" style="width: 100%;">新增</button>
+                    </div>
+                    <div id="customPhraseList"
+                        style="margin-top: 10px; max-height: 150px; overflow-y: auto; text-align: left; border: 1px solid #ccc; padding: 5px;">
+                        <!-- Custom phrases will be listed here -->
                     </div>
                 </div>
             </div>
