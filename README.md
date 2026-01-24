@@ -24,33 +24,6 @@ T5筆畫輸入法線上版，提供方便、免安裝的筆畫輸入法、字典
 - English
 - 簡體中文（透過 OpenCC 轉換）
 
-## 🔧 技術架構
-
-### 前端框架與樣式
-- **Bootstrap 5** - 響應式 UI 框架
-- **Vanilla JavaScript** - 核心邏輯實作
-- **CSS3** - 自訂樣式與動畫
-
-### 核心函式庫
-- **OpenCC** (BYVoid) - 繁簡轉換
-- **EasyQRCodeJS** (ushelp) - QR Code 生成
-- **JSZip** - ZIP 壓縮功能（MP3 切割工具）
-- **Jose** - JWT 處理
-
-### 瀏覽器 API
-- **MediaRecorder API** - 螢幕錄影
-- **Web Audio API** - 音訊混合處理
-- **Web Worker** - MP3 解析與切割
-
-### 分析與廣告
-- **Google Analytics** - 網站分析
-- **Google AdSense** - 廣告投放
-
-### 第三方服務
-- **PapaParse** - CSV 解析
-- **Day.js** - 日期時間處理
-
-
 ## 🚀 特色功能
 
 ### 螢幕錄影工具
