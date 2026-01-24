@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="head_title">MP3 切割工具 - T5筆畫輸入法</title>
+    <link rel="shortcut icon" href="../image/logo.png">
+    <script src="../lib/Opencc.min.js"></script>
+    <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../lib/jszip.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="最強大的線上 MP3 切割工具，支援「自動固定間隔」與「手動指定範圍」雙模式。免上傳保護隱私，瀏覽器內極速秒切。">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1KQPDXF72N');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+
+        .container-flex {
+            flex: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            color: #d26800;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Tool Card Styles for the Cutter Interface */
+        .cutter-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border: 1px solid #eee;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .input-group-custom {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #d26800;
+            /* Theme Orange */
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        #status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            min-height: 24px;
+        }
+
+        /* Results */
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .result-link {
+            color: #d26800;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .result-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Mode overrides */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+        }
+
+        body.dark-mode .cutter-card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        body.dark-mode .form-group label {
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .form-control,
+        body.dark-mode .form-select {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: #fff;
+        }
+
+        body.dark-mode .result-item {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: #fff;
+        }
+
+        body.dark-mode .footer {
+            background-color: #1f1f1f;
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .footer a {
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .text-muted {
+            color: #aaa !important;
+        }
+
+        /* Dark Mode Toggle */
+        #darkModeToggle {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        #darkModeToggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .swap-on,
+        .swap-off {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            background-color: #ffffff;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #d26800;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../image/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                T5筆畫輸入法
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="../dict.html" data-i18n="navbar_dict">輸入法字典</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://www.miniapps.hk/g6code/tutor_tc.html"
+                            target="_blank" data-i18n="navbar_tutor">輸入法教學</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about.html" data-i18n="navbar_about">輸入法介紹</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../oinput.html" data-i18n="navbar_full">完整版輸入法</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="../tools.html"
+                            data-i18n="navbar_tools">小工具</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../extension_download.html"
+                            data-i18n="navbar_ext">Chrome擴充功能</a></li>
+                </ul>
+                <div class="d-flex justify-content-end">
+                    <a id="comment_area" href="../discuss.html" class="btn btn-outline-light me-2"
+                        data-i18n="navbar_comment">留言區</a>
+                    <button id="langToggle" class="btn btn-outline-light me-2" onclick="toggleLanguage()">
+                        🌐 EN/中
+                    </button>
+                    <button id="darkModeToggle" aria-label="Toggle dark mode">
+                        <svg viewBox="0 0 24 24" class="swap-on" style="display:none;">
+                            <path fill="currentColor"
+                                d="m5.64 17l-.71.71a1 1 0 0 0 0 1.41a1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm7-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1ZM5.64 7.05a1 1 0 0 0 .7.29a1 1 0 0 0 .71-.29a1 1 0 0 0 0-1.41l-.71-.71a1 1 0 0 0-1.41 1.41Zm12 .29a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.64.71a1 1 0 0 0 0 1.41a1 1 0 0 0 .66.29ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-9 8a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Zm6.36-2A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0a1 1 0 0 0 0-1.41ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 3.5-3.5a3.5 3.5 0 0 1-3.5 3.5Z" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" class="swap-off">
+                            <path fill="currentColor"
+                                d="M21.64 13a1 1 0 0 0-1.05-.14a8.05 8.05 0 0 1-3.37.73a8.15 8.15 0 0 1-8.14-8.1a8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69a1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14a9.79 9.79 0 0 0 2.1-.22a8.11 8.11 0 0 1-7.18 4.32Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-flex">
+        <h1 data-i18n="title">MP3 切割工具</h1>
+
+        <!-- Ad audio_cutter1 -->
+        <div class="mb-4 text-center">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="3512379645" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="cutter-card">
+            <div class="mb-4 form-group">
+                <label for="audioInput" data-i18n="step1">1. 選擇 MP3 檔案</label>
+                <input type="file" class="form-control" id="audioInput" accept=".mp3,audio/mpeg">
+            </div>
+
+            <div class="mb-4 form-group">
+                <label data-i18n="step2">2. 選擇切割模式</label>
+                <div class="d-flex gap-3 mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="cutMode" id="modeAuto" value="auto" checked
+                            onchange="toggleMode()">
+                        <label class="form-check-label" for="modeAuto" data-i18n="mode_auto">
+                            自動分割 (每隔固定時間)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="cutMode" id="modeManual" value="manual"
+                            onchange="toggleMode()">
+                        <label class="form-check-label" for="modeManual" data-i18n="mode_manual">
+                            指定範圍 (從 A 到 B)
+                        </label>
+                    </div>
+                </div>
+
+                <div id="autoSettings">
+                    <div class="input-group-custom">
+                        <input type="number" class="form-control" id="segmentDuration" value="10" min="1"
+                            placeholder="輸入長度" data-i18n-placeholder="input_length">
+                        <select class="form-select" id="timeUnit">
+                            <option value="seconds" data-i18n="unit_sec">秒 (Seconds)</option>
+                            <option value="minutes" selected data-i18n="unit_min">分鐘 (Minutes)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="manualSettings" style="display:none;">
+                    <div class="row g-2">
+                        <!-- Start Time -->
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary fw-bold" style="font-size: 0.9em;"
+                                data-i18n="start_time">開始時間
+                                (Start)</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control text-center" id="startH" placeholder="0"
+                                    min="0" value="0">
+                                <span class="input-group-text">Hr</span>
+                                <input type="number" class="form-control text-center" id="startM" placeholder="0"
+                                    min="0" max="59" value="0">
+                                <span class="input-group-text">Min</span>
+                                <input type="number" class="form-control text-center" id="startS" placeholder="0"
+                                    min="0" max="59" value="0">
+                                <span class="input-group-text">Sec</span>
+                            </div>
+                        </div>
+
+                        <!-- End Time -->
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary fw-bold" style="font-size: 0.9em;"
+                                data-i18n="end_time">結束時間
+                                (End)</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control text-center" id="endH" placeholder="0" min="0"
+                                    value="0">
+                                <span class="input-group-text">Hr</span>
+                                <input type="number" class="form-control text-center" id="endM" placeholder="0" min="0"
+                                    max="59" value="0">
+                                <span class="input-group-text">Min</span>
+                                <input type="number" class="form-control text-center" id="endS" placeholder="0" min="0"
+                                    max="59" value="0">
+                                <span class="input-group-text">Sec</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end mt-1">
+                        <small class="text-muted" style="font-size: 0.8em;" data-i18n="end_note">(結束時間全填 0
+                            代表切到最後)</small>
+                    </div>
+                </div>
+            </div>
+
+            <button id="startBtn" class="btn btn-primary w-100 py-2 fw-bold" onclick="startProcessing()"
+                style="background-color: #d26800; border-color: #d26800;">
+                <i class="bi bi-scissors"></i> 開始切割
+            </button>
+
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div id="status"></div>
+
+            <div id="resultArea" style="display:none; margin-top: 30px;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="m-0 text-secondary" data-i18n="result_header">處理結果</h4>
+                </div>
+
+                <div class="d-flex gap-2 mb-3">
+                    <button onclick="downloadAllZip()" class="btn btn-success flex-grow-1" data-i18n="btn_zip">
+                        📦 打包下載 (ZIP)
+                    </button>
+                    <button onclick="downloadAllIndividual()" class="btn btn-outline-primary flex-grow-1"
+                        data-i18n="btn_download_all">
+                        ⬇️ 獨立下載全部
+                    </button>
+                </div>
+
+                <div id="download-list"></div>
+            </div>
+        </div>
+
+        <!-- Ad audio_cutter2 -->
+        <div class="mt-4 text-center">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="2199297974" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="../tools.html" class="text-muted text-decoration-none" data-i18n="back_link">← 返回小工具列表</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-1 my-1 py-2 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <span class="text-muted">© t5input</span>
+                </a>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a href="../support.html" class="text-muted text-decoration-none">支持</a></li>
+                <li class="ms-3"><a href="../privacy-policy.html" class="text-muted text-decoration-none">隱私權政策</a></li>
+                <li class="ms-3">
+                    <a class="text-muted" href="https://github.com/t5input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-github" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../min.js/audio_cutter.min.js"></script>
+</body>
+
+</html>

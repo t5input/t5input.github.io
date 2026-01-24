@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>T5筆畫輸入法 - T5 Chinese Stroke Input Method</title>
     <link rel="shortcut icon" href="image/logo.png">
-    <script src="Opencc.js"></script>
+    <script src="lib/Opencc.min.js"></script>
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -684,6 +684,9 @@
                         <a class="nav-link" href="oinput.html">完整版輸入法</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="tools.html">小工具</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="extension_download.html">Chrome擴充功能</a>
                     </li>
                 </ul>
@@ -840,7 +843,7 @@
 
         function sendToQrcodePage() {
             var text = document.getElementById('Output').value;
-            var url = 'qrcode.html?text=' + encodeURIComponent(text);
+            var url = 'tool/qrcode.html?text=' + encodeURIComponent(text);
             window.location.href = url;
         }
     </script>
@@ -1004,7 +1007,7 @@
         </div>
     </div>
 
-    <script src="inputScript.min.js"></script>
+    <script src="min.js/inputScript.min.js"></script>
 </body>
 
 </html>

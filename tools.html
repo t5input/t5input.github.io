@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="head_title">小工具 - T5筆畫輸入法</title>
+    <link rel="shortcut icon" href="image/logo.png">
+    <script src="lib/Opencc.min.js"></script>
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="T5筆畫輸入法免費線上工具集 - QR Code 產生器、螢幕錄影工具、MP3 切割工具。免安裝、免上傳，完全在瀏覽器中運行。">
+    <meta name="Keywords" content="T5筆畫輸入法, 小工具, 音頻切割, MP3 Cutter, QR Code, 螢幕錄影">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1KQPDXF72N');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+
+        .container {
+            flex: 1;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #d26800;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #eee;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            color: inherit;
+        }
+
+        .tool-icon {
+            height: 150px;
+            background-color: #fff4e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #d26800;
+        }
+
+        .tool-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .tool-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .tool-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        body.dark-mode .tool-card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        body.dark-mode .tool-icon {
+            background-color: #2d2d2d;
+            color: #ff9800;
+        }
+
+        body.dark-mode .tool-title {
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .tool-desc {
+            color: #bbb;
+        }
+
+        body.dark-mode .footer {
+            background-color: #1f1f1f;
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .footer a {
+            color: #f0f6fc;
+        }
+
+        body.dark-mode .text-muted {
+            color: #aaa !important;
+        }
+
+        /* Dark Mode Toggle Button */
+        #darkModeToggle {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        #darkModeToggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .swap-on,
+        .swap-off {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            background-color: #ffffff;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #d26800;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="image/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                T5筆畫輸入法
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dict.html" data-i18n="navbar_dict">輸入法字典</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.miniapps.hk/g6code/tutor_tc.html" target="_blank"
+                            data-i18n="navbar_tutor">輸入法教學</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-i18n="navbar_about">輸入法介紹</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="oinput.html" data-i18n="navbar_full">完整版輸入法</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tools.html" data-i18n="navbar_tools">小工具</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="extension_download.html" data-i18n="navbar_ext">Chrome擴充功能</a>
+                    </li>
+                </ul>
+                <div class="d-flex justify-content-end">
+                    <a id="comment_area" href="discuss.html" class="btn btn-outline-light me-2"
+                        data-i18n="navbar_comment">留言區</a>
+                    <button id="langToggle" class="btn btn-outline-light me-2" onclick="toggleLanguage()">
+                        🌐 EN/中
+                    </button>
+                    <button id="darkModeToggle" aria-label="Toggle dark mode">
+                        <!-- 亮色模式圖示（太陽） -->
+                        <svg viewBox="0 0 24 24" class="swap-on" style="display:none;">
+                            <path fill="currentColor"
+                                d="m5.64 17l-.71.71a1 1 0 0 0 0 1.41a1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm7-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1ZM5.64 7.05a1 1 0 0 0 .7.29a1 1 0 0 0 .71-.29a1 1 0 0 0 0-1.41l-.71-.71a1 1 0 0 0-1.41 1.41Zm12 .29a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.64.71a1 1 0 0 0 0 1.41a1 1 0 0 0 .66.29ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-9 8a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Zm6.36-2A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0a1 1 0 0 0 0-1.41ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 3.5-3.5a3.5 3.5 0 0 1-3.5 3.5Z" />
+                        </svg>
+                        <!-- 深色模式圖示（月亮） -->
+                        <svg viewBox="0 0 24 24" class="swap-off">
+                            <path fill="currentColor"
+                                d="M21.64 13a1 1 0 0 0-1.05-.14a8.05 8.05 0 0 1-3.37.73a8.15 8.15 0 0 1-8.14-8.1a8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69a1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14a9.79 9.79 0 0 0 2.1-.22a8.11 8.11 0 0 1-7.18 4.32Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 data-i18n="page_title">實用小工具</h1>
+
+        <!-- Ad Tool1 -->
+        <div class="mb-4 text-center">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="8189991252" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="tools-grid">
+            <!-- Audio Cutter Tool Card -->
+            <a href="tool/audio_cutter.html" class="tool-card">
+                <div class="tool-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                        class="bi bi-scissors" viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z" />
+                    </svg>
+                </div>
+                <div class="tool-content">
+                    <div class="tool-title" data-i18n="tool_audio_title">MP3 切割工具 (自動/手動)</div>
+                    <div class="tool-desc" data-i18n="tool_audio_desc">
+                        簡單好用的 MP3 切割神器！支援「固定間隔自動切分」與「指定時間範圍切割」雙模式。免上傳、免安裝，瀏覽器內極速處理，隱私絕對安全。
+                    </div>
+                </div>
+            </a>
+
+            <!-- QR Code Tool Card -->
+            <a href="tool/qrcode.html" class="tool-card">
+                <div class="tool-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                        class="bi bi-qr-code" viewBox="0 0 16 16">
+                        <path d="M2 2h2v2H2V2Z" />
+                        <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z" />
+                        <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z" />
+                        <path
+                            d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z" />
+                        <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z" />
+                    </svg>
+                </div>
+                <div class="tool-content">
+                    <div class="tool-title" data-i18n="tool_qrcode_title">QR Code 產生器</div>
+                    <div class="tool-desc" data-i18n="tool_qrcode_desc">
+                        快速將文字或網址轉換為 QR Code，支援自訂大小與容錯等級。
+                    </div>
+                </div>
+            </a>
+
+            <!-- Screen Recorder Tool Card -->
+            <a href="tool/screen_recorder.html" class="tool-card">
+                <div class="tool-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                        class="bi bi-camera-video" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z" />
+                    </svg>
+                </div>
+                <div class="tool-content">
+                    <div class="tool-title" data-i18n="tool_recorder_title">螢幕錄影工具</div>
+                    <div class="tool-desc" data-i18n="tool_recorder_desc">
+                        免安裝、免上傳的螢幕錄影工具。支援暫停/繼續、麥克風錄音、系統聲音錄製，直接在瀏覽器中完成錄影並下載。
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Ad Tool2 -->
+        <div class="mt-4 text-center">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                data-ad-slot="5563827912" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-1 my-1 py-2 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="text-muted">© t5input</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3">
+                    <a href="support.html" class="text-muted text-decoration-none" data-i18n="footer_support">支持</a>
+                </li>
+                <li class="ms-3">
+                    <a href="privacy-policy.html" class="text-muted text-decoration-none"
+                        data-i18n="footer_privacy">隱私權政策</a>
+                </li>
+                <li class="ms-3">
+                    <a class="text-muted" href="https://github.com/t5input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-github" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // --- i18n Logic ---
+        const translations = {
+            'zh-TW': {
+                'head_title': '小工具 - T5筆畫輸入法',
+                'page_title': '實用小工具',
+                'navbar_dict': '輸入法字典',
+                'navbar_tutor': '輸入法教學',
+                'navbar_about': '輸入法介紹',
+                'navbar_full': '完整版輸入法',
+                'navbar_tools': '小工具',
+                'navbar_ext': 'Chrome擴充功能',
+                'navbar_comment': '留言區',
+                'tool_audio_title': 'MP3 切割工具 (自動/手動)',
+                'tool_audio_desc': '簡單好用的 MP3 切割神器！支援「固定間隔自動切分」與「指定時間範圍切割」雙模式。免上傳、免安裝，瀏覽器內極速處理，隱私絕對安全。',
+                'tool_qrcode_title': 'QR Code 產生器',
+                'tool_qrcode_desc': '快速將文字或網址轉換為 QR Code，支援自訂大小與容錯等級。',
+                'tool_recorder_title': '螢幕錄影工具',
+                'tool_recorder_desc': '免安裝、免上傳的螢幕錄影工具。支援暫停/繼續、麥克風錄音、系統聲音錄製，直接在瀏覽器中完成錄影並下載。',
+                'footer_support': '支持',
+                'footer_privacy': '隱私權政策'
+            },
+            'en': {
+                'head_title': 'Tools - T5 Input',
+                'page_title': 'Useful Tools',
+                'navbar_dict': 'Dictionary',
+                'navbar_tutor': 'Tutorial',
+                'navbar_about': 'About',
+                'navbar_full': 'Full Input',
+                'navbar_tools': 'Tools',
+                'navbar_ext': 'Extension',
+                'navbar_comment': 'Discuss',
+                'tool_audio_title': 'MP3 Mode Cutter (Auto/Manual)',
+                'tool_audio_desc': 'The best online MP3 cutter! Supports both "Auto Split by Interval" and "Manual Range Cut" modes. No uploads, no installation, lightning-fast client-side processing for total privacy.',
+                'tool_qrcode_title': 'QR Code Generator',
+                'tool_qrcode_desc': 'Quickly convert text or URLs into QR Codes. Supports custom size and error correction levels.',
+                'tool_recorder_title': 'Screen Recorder',
+                'tool_recorder_desc': 'Record your screen directly in the browser. Supports pause/resume, microphone audio, system audio capture. No installation required.',
+                'footer_support': 'Support',
+                'footer_privacy': 'Privacy Policy'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang');
+        if (!currentLang) {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (/zh-(hk|tw|hant)/i.test(userLang)) {
+                currentLang = 'zh-TW';
+            } else {
+                currentLang = 'en';
+            }
+        }
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh-TW' ? 'en' : 'zh-TW';
+            localStorage.setItem('lang', currentLang);
+            updatePageLanguage();
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updatePageLanguage();
+            // ... existing code ...
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const sunIcon = darkModeToggle.querySelector('.swap-on');
+            const moonIcon = darkModeToggle.querySelector('.swap-off');
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
