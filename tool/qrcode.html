@@ -391,66 +391,73 @@
         </div>
     </nav>
     <div class="main-flex-wrapper">
-        <!-- 上方廣告 -->
-        <div class="mb-4 text-center" style="width: 100%;">
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
-                crossorigin="anonymous"></script>
-            <!-- qrcode1 -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
-                data-ad-slot="5917016948" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="qrcode-two-col">
-            <div class="qrcode-input-col">
-                <div class="qrcode-content">
-                    <h1 data-i18n="page_title">QR Code 產生器</h1>
-                    <p data-i18n="page_desc">可以快速把資料傳送到手機，複製貼上。</p>
-                    <div class="mb-3 w-100">
-                        <textarea id="modalQrText" class="form-control" rows="4" placeholder="請輸入要轉換成QR Code的文字或網址"
-                            data-i18n-placeholder="input_placeholder"></textarea>
-                    </div>
-                    <div id="modalWordCountWarning" class="alert alert-warning py-2 mb-3 w-100" style="display:none;">
-                    </div>
-                    <div class="mb-3 w-100">
-                        <label for="modalQrSize" class="form-label" data-i18n="input_label_size">QR Code 大小
-                            (px):</label>
-                        <input type="number" id="modalQrSize" class="form-control" value="350" min="50"
-                            style="max-width: 200px; display: inline-block;">
-                    </div>
-                    <div class="mb-3 w-100">
-                        <label for="modalQrLevel" class="form-label" data-i18n="input_label_level">容錯等級：</label>
-                        <select id="modalQrLevel" class="form-select" style="max-width: 200px; display: inline-block;">
-                            <option value="L" data-i18n="level_l">L - 低 (約7%容錯)</option>
-                            <option value="M" data-i18n="level_m">M - 中 (約15%容錯)</option>
-                            <option value="Q" data-i18n="level_q">Q - 高 (約25%容錯)</option>
-                            <option value="H" data-i18n="level_h">H - 超高 (約30%容錯)</option>
-                        </select>
-                    </div>
-                    <div class="btn-row">
-                        <button onclick="generateQRCodeModal()" class="btn btn-primary" data-i18n="btn_generate">產生 QR
-                            Code</button>
+        <div style="width: 100%; max-width: 900px;">
+            <!-- 上方廣告 -->
+            <div class="mb-4 text-center">
+                <script async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+                    crossorigin="anonymous"></script>
+                <!-- qrcode1 -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                    data-ad-slot="5917016948" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="qrcode-two-col">
+                <div class="qrcode-input-col">
+                    <div class="qrcode-content">
+                        <h1 data-i18n="page_title">QR Code 產生器</h1>
+                        <p data-i18n="page_desc">可以快速把資料傳送到手機，複製貼上。</p>
+                        <div class="mb-3 w-100">
+                            <textarea id="modalQrText" class="form-control" rows="4" placeholder="請輸入要轉換成QR Code的文字或網址"
+                                data-i18n-placeholder="input_placeholder"></textarea>
+                        </div>
+                        <div id="modalWordCountWarning" class="alert alert-warning py-2 mb-3 w-100"
+                            style="display:none;">
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="modalQrSize" class="form-label" data-i18n="input_label_size">QR Code 大小
+                                (px):</label>
+                            <input type="number" id="modalQrSize" class="form-control" value="350" min="50"
+                                style="max-width: 200px; display: inline-block;">
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="modalQrLevel" class="form-label" data-i18n="input_label_level">容錯等級：</label>
+                            <select id="modalQrLevel" class="form-select"
+                                style="max-width: 200px; display: inline-block;">
+                                <option value="L" data-i18n="level_l">L - 低 (約7%容錯)</option>
+                                <option value="M" data-i18n="level_m">M - 中 (約15%容錯)</option>
+                                <option value="Q" data-i18n="level_q">Q - 高 (約25%容錯)</option>
+                                <option value="H" data-i18n="level_h">H - 超高 (約30%容錯)</option>
+                            </select>
+                        </div>
+                        <div class="btn-row">
+                            <button onclick="generateQRCodeModal()" class="btn btn-primary" data-i18n="btn_generate">產生
+                                QR
+                                Code</button>
+                        </div>
                     </div>
                 </div>
+                <div class="qrcode-output-col">
+                    <div id="modalQrcodeContainer" class="d-flex-center"></div>
+                    <div id="modalQrInfo" class="mt-2"></div>
+                </div>
             </div>
-            <div class="qrcode-output-col">
-                <div id="modalQrcodeContainer" class="d-flex-center"></div>
-                <div id="modalQrInfo" class="mt-2"></div>
+
+            <!-- 下方廣告 -->
+            <div class="mt-4 text-center">
+                <script async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
+                    crossorigin="anonymous"></script>
+                <!-- qrcode2 -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
+                    data-ad-slot="2364278490" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
-        </div>
-        <!-- 下方廣告 -->
-        <div class="mt-4 text-center" style="width: 100%;">
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9611199768896429"
-                crossorigin="anonymous"></script>
-            <!-- qrcode2 -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9611199768896429"
-                data-ad-slot="2364278490" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
     </div>
     <footer class="footer">
