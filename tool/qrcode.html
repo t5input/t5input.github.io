@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title data-i18n="head_title">QR Code 產生器 - T5筆畫輸入法</title>
-    <meta name="description" content="免費線上 QR Code 產生器，支援網址、文字、電話、Email 等多種格式。即時生成、自訂顏色、免安裝、完全免費。">
+    <title>Free Online QR Code Generator - Create QR Codes Instantly | T5 Input</title>
+    <meta name="description"
+        content="Free online QR code generator. Create QR codes for URLs, text, phone numbers, and emails instantly. No upload required, completely free, and works offline in your browser.">
+    <meta name="keywords"
+        content="qr code generator, free qr code, create qr code, qr code maker, online qr generator, qr code creator">
+    <link rel="canonical" href="https://www.t5input.com/tool/qrcode.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.t5input.com/tool/qrcode.html">
+    <meta property="og:title" content="Free Online QR Code Generator - Create QR Codes Instantly">
+    <meta property="og:description"
+        content="Free online QR code generator. Create QR codes for URLs, text, phone numbers, and emails instantly. No upload required, completely free.">
+    <meta property="og:image" content="https://www.t5input.com/image/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.t5input.com/tool/qrcode.html">
+    <meta property="twitter:title" content="Free Online QR Code Generator">
+    <meta property="twitter:description" content="Create QR codes instantly. Free, no upload required.">
+    <meta property="twitter:image" content="https://www.t5input.com/image/logo.png">
+
+    <!-- Alternate Language -->
+    <link rel="alternate" hreflang="en" href="https://www.t5input.com/tool/qrcode.html">
+    <link rel="alternate" hreflang="zh-Hant" href="https://www.t5input.com/tool/qrcode.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.t5input.com/tool/qrcode.html">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "description": "Free online QR code generator. Create QR codes for URLs, text, phone numbers, and emails instantly.",
+      "url": "https://www.t5input.com/tool/qrcode.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Instant QR code generation, Customizable size, Error correction levels, No upload required"
+    }
+    </script>
     <link rel="shortcut icon" href="../image/logo.png">
     <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../lib/easy.qrcode.min.js"></script>
@@ -432,11 +475,21 @@
                                     <option value="H" data-i18n="level_h">H - 超高 (約30%容錯)</option>
                                 </select>
                             </div>
+                            <div class="mb-3 w-100">
+                                <label for="modalQrLogo" class="form-label" data-i18n="input_label_logo">中心圖示
+                                    (選填):</label>
+                                <input type="file" id="modalQrLogo" class="form-control" accept="image/*"
+                                    style="max-width: 300px; display: inline-block;">
+                                <small class="form-text text-muted d-block" data-i18n="logo_hint">建議使用正方形圖片,圖片會顯示在 QR
+                                    Code 中心</small>
+                            </div>
                             <div class="btn-row">
                                 <button onclick="generateQRCodeModal()" class="btn btn-primary"
                                     data-i18n="btn_generate">產生
                                     QR
                                     Code</button>
+                                <button id="btnDownloadQR" onclick="downloadQRCode()" class="btn btn-success"
+                                    style="display:none;" data-i18n="btn_download_qr">⬇️ 下載 QR Code</button>
                             </div>
                         </div>
                     </div>
@@ -551,6 +604,9 @@
                 'level_q': 'Q - 高 (約25%容錯)',
                 'level_h': 'H - 超高 (約30%容錯)',
                 'btn_generate': '產生 QR Code',
+                'input_label_logo': '中心圖示 (選填):',
+                'logo_hint': '建議使用正方形圖片,圖片會顯示在 QR Code 中心',
+                'btn_download_qr': '⬇️ 下載 QR Code',
                 'footer_support': '支持',
                 'footer_privacy': '隱私權政策',
                 'alert_empty': '請輸入內容以產生QR Code。',
@@ -577,6 +633,9 @@
                 'level_q': 'Q - Quartile (~25%)',
                 'level_h': 'H - High (~30%)',
                 'btn_generate': 'Generate QR Code',
+                'input_label_logo': 'Center Logo (Optional):',
+                'logo_hint': 'Recommended: square image. Logo will be displayed in QR code center',
+                'btn_download_qr': '⬇️ Download QR Code',
                 'footer_support': 'Support',
                 'footer_privacy': 'Privacy Policy',
                 'alert_empty': 'Please enter content to generate.',
@@ -589,11 +648,32 @@
         let currentLang = localStorage.getItem('lang');
         if (!currentLang) {
             const userLang = navigator.language || navigator.userLanguage;
+            // Default to English, only switch to Chinese for Traditional Chinese users
             if (/zh-(hk|tw|hant)/i.test(userLang)) {
                 currentLang = 'zh-TW';
             } else {
                 currentLang = 'en';
             }
+        }
+
+        // Update HTML lang attribute
+        function updateHtmlLang() {
+            document.documentElement.lang = currentLang === 'zh-TW' ? 'zh-Hant' : 'en';
+        }
+
+        // Update title and meta description dynamically
+        function updateMetaTags() {
+            const titleMap = {
+                'zh-TW': 'QR Code 產生器 - T5筆畫輸入法',
+                'en': 'Free Online QR Code Generator - Create QR Codes Instantly | T5 Input'
+            };
+            const descMap = {
+                'zh-TW': '免費線上 QR Code 產生器,支援網址、文字、電話、Email 等多種格式。即時生成、自訂顏色、免安裝、完全免費。',
+                'en': 'Free online QR code generator. Create QR codes for URLs, text, phone numbers, and emails instantly. No upload required, completely free, and works offline in your browser.'
+            };
+            document.title = titleMap[currentLang];
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', descMap[currentLang]);
         }
 
         function t(key, params = {}) {
@@ -607,6 +687,8 @@
         function toggleLanguage() {
             currentLang = currentLang === 'zh-TW' ? 'en' : 'zh-TW';
             localStorage.setItem('lang', currentLang);
+            updateHtmlLang();
+            updateMetaTags();
             updatePageLanguage();
         }
 
@@ -626,6 +708,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            updateHtmlLang();
+            updateMetaTags();
             updatePageLanguage();
             // ... existing code ...
             setDarkMode(getDarkModePref());
@@ -641,11 +725,16 @@
             const text = document.getElementById('modalQrText').value;
             const qrcodeContainer = document.getElementById('modalQrcodeContainer');
             const warningMessage = document.getElementById('modalWordCountWarning');
+            const downloadBtn = document.getElementById('btnDownloadQR');
             let size = parseInt(document.getElementById('modalQrSize').value);
             const level = document.getElementById('modalQrLevel').value;
+            const logoInput = document.getElementById('modalQrLogo');
+
             warningMessage.style.display = 'none';
             warningMessage.textContent = '';
             qrcodeContainer.innerHTML = '';
+            downloadBtn.style.display = 'none';
+
             if (text.trim() === '') {
                 qrcodeContainer.innerHTML = `<p style="color: grey;">${t('alert_empty')}</p>`;
                 return;
@@ -659,21 +748,65 @@
                 size = 350;
                 document.getElementById('modalQrSize').value = 350;
             }
+
             try {
-                new QRCode(qrcodeContainer, {
+                const qrOptions = {
                     text: text,
                     width: size,
                     height: size,
                     colorDark: "#000000",
                     colorLight: "#ffffff",
                     correctLevel: QRCode.CorrectLevel[level]
-                });
-                document.getElementById('modalQrInfo').innerHTML = t('info_size', { size: size, level: level });
+                };
+
+                // Check if logo is uploaded
+                if (logoInput.files && logoInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        qrOptions.logo = e.target.result;
+                        qrOptions.logoWidth = size * 0.2; // Logo is 20% of QR code size
+                        qrOptions.logoHeight = size * 0.2;
+                        qrOptions.logoBackgroundTransparent = false;
+                        qrOptions.logoBackgroundColor = '#ffffff';
+
+                        new QRCode(qrcodeContainer, qrOptions);
+                        document.getElementById('modalQrInfo').innerHTML = t('info_size', { size: size, level: level });
+                        downloadBtn.style.display = 'inline-block';
+                    };
+                    reader.readAsDataURL(logoInput.files[0]);
+                } else {
+                    new QRCode(qrcodeContainer, qrOptions);
+                    document.getElementById('modalQrInfo').innerHTML = t('info_size', { size: size, level: level });
+                    downloadBtn.style.display = 'inline-block';
+                }
             } catch (e) {
                 qrcodeContainer.innerHTML = `<div class="alert alert-danger" style="font-size:15px;">${t('alert_content_long')}</div>`;
                 document.getElementById('modalQrInfo').innerHTML = '';
                 console.error("QR Code 生成失敗:", e);
             }
+        }
+
+        // Download QR Code function
+        function downloadQRCode() {
+            const qrcodeContainer = document.getElementById('modalQrcodeContainer');
+            const canvas = qrcodeContainer.querySelector('canvas');
+
+            if (!canvas) {
+                alert(currentLang === 'zh-TW' ? '請先產生 QR Code' : 'Please generate QR Code first');
+                return;
+            }
+
+            // Convert canvas to blob and download
+            canvas.toBlob(function (blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `qrcode-${Date.now()}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
         }
     </script>
     <script src="../bootstrap/bootstrap.bundle.min.js"></script>

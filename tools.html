@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title data-i18n="head_title">小工具 - T5筆畫輸入法</title>
+    <title>Free Online Tools - MP3 Cutter, QR Code Generator, Screen Recorder | T5 Input</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Free online tools collection: MP3 Cutter, QR Code Generator, and Screen Recorder. No installation, no upload - all tools run directly in your browser for complete privacy.">
+    <meta name="keywords"
+        content="online tools, mp3 cutter, qr code generator, screen recorder, free tools, browser tools">
+    <link rel="canonical" href="https://www.t5input.com/tools.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.t5input.com/tools.html">
+    <meta property="og:title" content="Free Online Tools - MP3 Cutter, QR Code Generator, Screen Recorder">
+    <meta property="og:description"
+        content="Free online tools collection. No installation, no upload - all tools run directly in your browser.">
+    <meta property="og:image" content="https://www.t5input.com/image/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.t5input.com/tools.html">
+    <meta property="twitter:title" content="Free Online Tools Collection">
+    <meta property="twitter:description"
+        content="MP3 Cutter, QR Code Generator, Screen Recorder - all free and browser-based.">
+    <meta property="twitter:image" content="https://www.t5input.com/image/logo.png">
+
+    <!-- Alternate Language -->
+    <link rel="alternate" hreflang="en" href="https://www.t5input.com/tools.html">
+    <link rel="alternate" hreflang="zh-Hant" href="https://www.t5input.com/tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.t5input.com/tools.html">
+
     <link rel="shortcut icon" href="image/logo.png">
     <script src="lib/Opencc.min.js"></script>
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap/bootstrap.bundle.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="T5筆畫輸入法免費線上工具集 - QR Code 產生器、螢幕錄影工具、MP3 切割工具。免安裝、免上傳，完全在瀏覽器中運行。">
-    <meta name="Keywords" content="T5筆畫輸入法, 小工具, 音頻切割, MP3 Cutter, QR Code, 螢幕錄影">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KQPDXF72N"></script>
     <script>
@@ -385,8 +410,8 @@
                 'navbar_tools': 'Tools',
                 'navbar_ext': 'Extension',
                 'navbar_comment': 'Discuss',
-                'tool_audio_title': 'MP3 Mode Cutter (Auto/Manual)',
-                'tool_audio_desc': 'The best online MP3 cutter! Supports both "Auto Split by Interval" and "Manual Range Cut" modes. No uploads, no installation, lightning-fast client-side processing for total privacy.',
+                'tool_audio_title': 'MP3 Cutter (Auto/Manual)',
+                'tool_audio_desc': 'Powerful online MP3 cutter! Supports both "Auto Split by Interval" and "Manual Range Cut" modes. No uploads, no installation - lightning-fast browser-based processing for complete privacy.',
                 'tool_qrcode_title': 'QR Code Generator',
                 'tool_qrcode_desc': 'Quickly convert text or URLs into QR Codes. Supports custom size and error correction levels.',
                 'tool_recorder_title': 'Screen Recorder',
@@ -399,11 +424,32 @@
         let currentLang = localStorage.getItem('lang');
         if (!currentLang) {
             const userLang = navigator.language || navigator.userLanguage;
+            // Default to English, only switch to Chinese for Traditional Chinese users
             if (/zh-(hk|tw|hant)/i.test(userLang)) {
                 currentLang = 'zh-TW';
             } else {
                 currentLang = 'en';
             }
+        }
+
+        // Update HTML lang attribute
+        function updateHtmlLang() {
+            document.documentElement.lang = currentLang === 'zh-TW' ? 'zh-Hant' : 'en';
+        }
+
+        // Update title and meta description dynamically
+        function updateMetaTags() {
+            const titleMap = {
+                'zh-TW': '小工具 - T5筆畫輸入法',
+                'en': 'Free Online Tools - MP3 Cutter, QR Code Generator, Screen Recorder | T5 Input'
+            };
+            const descMap = {
+                'zh-TW': 'T5筆畫輸入法免費線上工具集 - QR Code 產生器、螢幕錄影工具、MP3 切割工具。免安裝、免上傳,完全在瀏覽器中運行。',
+                'en': 'Free online tools collection: MP3 Cutter, QR Code Generator, and Screen Recorder. No installation, no upload - all tools run directly in your browser for complete privacy.'
+            };
+            document.title = titleMap[currentLang];
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', descMap[currentLang]);
         }
 
         function t(key) {
@@ -413,6 +459,8 @@
         function toggleLanguage() {
             currentLang = currentLang === 'zh-TW' ? 'en' : 'zh-TW';
             localStorage.setItem('lang', currentLang);
+            updateHtmlLang();
+            updateMetaTags();
             updatePageLanguage();
         }
 
@@ -426,6 +474,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            updateHtmlLang();
+            updateMetaTags();
             updatePageLanguage();
             // ... existing code ...
             const darkModeToggle = document.getElementById('darkModeToggle');
