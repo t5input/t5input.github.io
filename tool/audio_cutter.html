@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,6 +9,9 @@
     <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../lib/jszip.min.js"></script>
+    <script src="../lib/lame.min.js"></script>
+    <script src="../lib/ffmpeg/ffmpeg.js"></script>
+    <script src="../lib/ffmpeg/ffmpeg-util.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Free online MP3 cutter and audio splitter. Split MP3 files by fixed intervals or custom ranges. No upload, no installation - process audio files directly in your browser with complete privacy.">
@@ -138,9 +141,7 @@
 
         /* Results */
         .result-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: block;
             padding: 15px;
             background: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -297,7 +298,7 @@
     </nav>
 
     <div class="container-flex">
-        <h1 data-i18n="title">MP3 切割工具</h1>
+        <h1 data-i18n="title">Audio Cutter (MP3/WAV/FLAC/...)</h1>
 
         <!-- Ad audio_cutter1 -->
         <div class="mb-4 text-center">
@@ -310,8 +311,18 @@
 
         <div class="cutter-card">
             <div class="mb-4 form-group">
-                <label for="audioInput" data-i18n="step1">1. 選擇 MP3 檔案</label>
-                <input type="file" class="form-control" id="audioInput" accept=".mp3,audio/mpeg">
+                <label for="audioInput">
+                    <span data-i18n="step1" style="font-size: 1.1em;">1. 選擇音訊檔案</span>
+                    <div class="text-muted fw-normal mt-1" style="font-size: 0.85em;" data-i18n="supported_formats">
+                        支援格式: MP3, WAV, FLAC, M4A, OGG, OPUS</div>
+                </label>
+                <input type="file" class="form-control mt-2" id="audioInput"
+                    accept=".mp3,audio/mpeg,.wav,.wma,.flac,.aac,.ogg,.opus,.m4a,audio/*">
+
+                <div id="previewContainer" class="mt-3" style="display:none;">
+                    <label class="text-muted" style="font-size: 0.9em;">預覽 (Preview):</label>
+                    <audio id="sourcePreview" controls style="width: 100%; margin-top: 5px;"></audio>
+                </div>
             </div>
 
             <div class="mb-4 form-group">
@@ -331,6 +342,24 @@
                             指定範圍 (從 A 到 B)
                         </label>
                     </div>
+                </div>
+
+                <!-- Output Format Selector -->
+                <div class="mb-3">
+                    <label class="fw-bold mb-2" for="outputFormat">3. 輸出格式 (Output Format):</label>
+                    <select id="outputFormat" class="form-select" style="max-width: 400px;">
+                        <option value="auto" selected>自動 (Auto - Same as Input)</option>
+                        <option value="mp3">MP3</option>
+                        <option value="wav">WAV</option>
+                        <option value="m4a">M4A</option>
+                        <option value="aac">AAC</option>
+                        <option value="ogg">OGG</option>
+                        <option value="flac">FLAC</option>
+                    </select>
+                    <small class="text-muted d-block mt-1" id="fmtHelp" style="font-size: 0.85em;">
+                        Auto: 來源是 MP3 則保持 MP3 (最快)，M4A 保持 M4A (直接剪輯)，其他轉為 WAV。<br>
+                        Auto: Keeps source format if possible (Fastest/Direct Copy), otherwise converts.
+                    </small>
                 </div>
 
                 <div id="autoSettings">
