@@ -13,9 +13,9 @@
     <script src="../lib/ffmpeg/ffmpeg.js"></script>
     <script src="../lib/ffmpeg/ffmpeg-util.js"></script>
     <!-- WaveSurfer.js & Regions Plugin -->
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/timeline.min.js"></script>
+    <script src="../lib/wavesurfer/wavesurfer.min.js"></script>
+    <script src="../lib/wavesurfer/regions.min.js"></script>
+    <script src="../lib/wavesurfer/timeline.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Free online audio cutter and editor. Split audio files by fixed intervals or custom ranges. Remove silence automatically. No upload, no installation - process directly in your browser with complete privacy.">
@@ -360,6 +360,13 @@
                                 </label>
                             </div>
                             <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cutMode" id="modeConvert"
+                                    value="convert" onchange="toggleMode()">
+                                <label class="form-check-label" for="modeConvert" data-i18n="mode_convert">
+                                    格式轉換 (Format Conversion)
+                                </label>
+                            </div>
+                            <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cutMode" id="modeSilence"
                                     value="silence" onchange="toggleMode()">
                                 <label class="form-check-label" for="modeSilence" data-i18n="mode_silence">
@@ -389,7 +396,7 @@
                             </small>
                         </div>
 
-                        <div id="autoSettings">
+                        <div id="autoSettings" style="display:none;">
                             <div class="input-group-custom">
                                 <input type="number" class="form-control" id="segmentDuration" value="10" min="1"
                                     placeholder="輸入長度" data-i18n-placeholder="input_length">
@@ -475,7 +482,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row g-2">
+                <div class="row g-2" id="timeRangeInputs">
                     <!-- Start Time -->
                     <div class="col-md-6">
                         <label class="form-label text-secondary fw-bold" style="font-size: 0.9em;"
