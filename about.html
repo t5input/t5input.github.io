@@ -116,6 +116,29 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        /* Added from info-box */
+        .highlight {
+            color: #d26800;
+            font-weight: bold;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 5px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .keyboard div {
+            background-color: #fff;
+            border: 1px solid #d4b087;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -160,6 +183,7 @@
     <div class="container">
         <h1>筆劃輸入法介紹</h1>
         <p>筆劃輸入法是一種根據筆順輸入相應筆劃字碼來輸入漢字的中文輸入法，是最簡單易學的一種漢字輸入法，常見於手機上。</p>
+        <p>此輸入法目前有 <span class="highlight">20948</span> 中文字，<span class="highlight">30591</span> 中文詞語。</p>
         <h2>T5 筆劃輸入法名稱由來</h2>
 
         <h4>名稱由來與設計理念</h4>
@@ -329,6 +353,13 @@
 
         <h2>字碼分類</h2>
         <p>此輸入法中的筆劃類似永字八法中的分類，包括橫、豎、撇、點和折。</p>
+        <div class="keyboard">
+            <div>一</div>
+            <div>丨</div>
+            <div>丿</div>
+            <div>丶</div>
+            <div>乛</div>
+        </div>
 
         <h2>取碼原則</h2>
         <p>所有筆劃全取。在輸入時，軟體會自動找出相關的字，所以通常不需要輸入全碼。</p>
@@ -545,6 +576,8 @@
                 <td>何 歌</td>
             </tr>
         </table>
+
+        <p style="margin-top: 30px;">系統沒有的字詞，請用我們的<a href="discuss.html">留言區</a>建議加入，我們會作定期的更新。</p>
     </div>
     <div class="container">
         <!-- Footer -->
