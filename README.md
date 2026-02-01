@@ -8,10 +8,9 @@ The website has been migrated to a new platform.
 This repository now serves as a redirection shell to ensure users visiting `t5input.github.io` are automatically redirected to the new domain.
 
 ## Redirect Logic
-All HTML files in this repository contain a JavaScript redirect script that:
-1.  Detects the current path.
-2.  Removes `/t5input-main` from the start of the path (if present).
-3.  Retains `.html` extensions.
-4.  Redirects to the corresponding page on `t5input.pages.dev`.
+All HTML files in this repository contain:
+1.  **JavaScript Redirect:** Detects path, removes `/t5input-main`, retains `.html`, and redirects.
+2.  **Meta Refresh:** `<meta http-equiv="refresh" ...>` for broad compatibility.
+3.  **Canonical Link:** `<link rel="canonical" ...>` to help search engines index the new site.
 
 Example: `t5input.github.io/t5input-main/oinput.html` -> `t5input.pages.dev/oinput.html`
