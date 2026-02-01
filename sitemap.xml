@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!-- Main Pages -->
+<url>
+  <loc>https://t5input.pages.dev/</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>1.00</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://t5input.pages.dev/index</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>1.00</priority>
+  <changefreq>weekly</changefreq>
+</url>
+
+<!-- Input Method Pages -->
+<url>
+  <loc>https://t5input.pages.dev/oinput</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://t5input.pages.dev/dict</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+  <changefreq>weekly</changefreq>
+</url>
+
+<!-- Information Pages -->
+<url>
+  <loc>https://t5input.pages.dev/about</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+  <changefreq>monthly</changefreq>
+</url>
+
+<!-- Tools Hub -->
+<url>
+  <loc>https://t5input.pages.dev/tools</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.85</priority>
+  <changefreq>weekly</changefreq>
+</url>
+
+<!-- Individual Tools -->
+<url>
+  <loc>https://t5input.pages.dev/tool/qrcode</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.75</priority>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>https://t5input.pages.dev/tool/screen_recorder</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.75</priority>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>https://t5input.pages.dev/tool/audio_cutter</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.75</priority>
+  <changefreq>monthly</changefreq>
+</url>
+
+<!-- Extension & Downloads -->
+<url>
+  <loc>https://t5input.pages.dev/extension_download</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+  <changefreq>monthly</changefreq>
+</url>
+
+<!-- Community & Support -->
+<url>
+  <loc>https://t5input.pages.dev/discuss</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://t5input.pages.dev/support</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+  <changefreq>monthly</changefreq>
+</url>
+
+<!-- Legal & Policy -->
+<url>
+  <loc>https://t5input.pages.dev/privacy-policy</loc>
+  <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
+  <changefreq>yearly</changefreq>
+</url>
+
+</urlset>
