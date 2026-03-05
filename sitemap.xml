@@ -6,79 +6,79 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://t5input.com/</loc>
+  <loc>https://t5input.pages.dev/</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://t5input.com/oinput</loc>
+  <loc>https://t5input.pages.dev/oinput</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.90</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://t5input.com/dict</loc>
+  <loc>https://t5input.pages.dev/dict</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.90</priority>
   <changefreq>weekly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/about</loc>
+  <loc>https://t5input.pages.dev/about</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
   <changefreq>monthly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/tools</loc>
+  <loc>https://t5input.pages.dev/tools</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.85</priority>
   <changefreq>weekly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/tool/qrcode</loc>
+  <loc>https://t5input.pages.dev/tool/qrcode</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.75</priority>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>https://t5input.com/tool/screen_recorder</loc>
+  <loc>https://t5input.pages.dev/tool/screen_recorder</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.75</priority>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>https://t5input.com/tool/audio_cutter</loc>
+  <loc>https://t5input.pages.dev/tool/audio_cutter</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.75</priority>
   <changefreq>monthly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/extension_download</loc>
+  <loc>https://t5input.pages.dev/extension_download</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
   <changefreq>monthly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/discuss</loc>
+  <loc>https://t5input.pages.dev/discuss</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.70</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://t5input.com/support</loc>
+  <loc>https://t5input.pages.dev/support</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.70</priority>
   <changefreq>monthly</changefreq>
 </url>
 
 <url>
-  <loc>https://t5input.com/privacy-policy</loc>
+  <loc>https://t5input.pages.dev/privacy-policy</loc>
   <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   <priority>0.50</priority>
   <changefreq>yearly</changefreq>
