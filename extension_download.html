@@ -5,24 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Redirecting...</title>
-    <link rel="canonical" href="https://t5input.pages.dev/extension_download.html">
-    <meta http-equiv="refresh" content="0; url=https://t5input.pages.dev/extension_download.html">
+    <link rel="canonical" href="https://t5input.com/extension_download">
+    <meta http-equiv="refresh" content="0; url=https://t5input.com/extension_download">
     <script>
         (function () {
             var path = window.location.pathname;
             path = path.replace(/^\/t5input-main/, "");
-            if (!path || path === '') path = '/';
+            path = path.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "");
             if (!path.startsWith('/')) path = '/' + path;
-            var newUrl = 'https://t5input.pages.dev' + path + window.location.search + window.location.hash;
+            var newUrl = 'https://t5input.com' + path + window.location.search + window.location.hash;
             window.location.replace(newUrl);
         })();
     </script>
 </head>
 
 <body>
-    <p>Redirecting to <a
-            href="https://t5input.pages.dev/extension_download.html">t5input.pages.dev/extension_download.html</a>...
-    </p>
+    <p>Redirecting to <a href="https://t5input.com/extension_download">t5input.com/extension_download</a>...</p>
 </body>
 
 </html>
